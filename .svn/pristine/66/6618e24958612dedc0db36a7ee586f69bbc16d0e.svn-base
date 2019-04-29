@@ -1,0 +1,143 @@
+﻿@************************************************************************************@
+@************************************************************************************@
+@*****                                                                          *****@
+@*****  FileName: /Views/CONTACTS/Index.cshtml                                  *****@
+@*****  Copyright: CCWRD - 2018                                                 *****@
+@*****  Author: Mark Hripko                                                     *****@
+@*****                                                                          *****@
+@*****  History: (Developer Initials)   Date    Description                     *****@
+@*****                                                                          *****@
+@************************************************************************************@
+@************************************************************************************@
+
+@model IEnumerable<PORTAL.Models.spGetAllContactsForSearch_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Contacts Index</h2>
+
+
+<br />
+<script type="text/javascript">
+
+    // Used by Kendo Grid to Initialize the Actions column menus
+    function ContactsGridInitMenus(e) {
+        var grid = this;
+        $(".templateCell").each(function () {
+            var cell = $(this),
+                item = grid.dataItem(cell.closest("tr"));
+
+            eval($(this).children("script").last().html());
+
+            var menu = $("#menu_mycontacts_" + item.CONTACTID).data("kendoMenu");
+            if (menu) {
+                // Could put something here to conditionally remove a menu based on something in the data
+                // In our case we're going to remove ANY menu items that have the text of 'HideMe'
+                menu.remove('.k-item:has(>a[href*="HideMe"]),.k-item[onclick*="HideMe"]');
+            }
+        });
+    }
+
+    // Used to insure only one detail row per grid is open at a time
+    function detailExpand(ev) {
+        var expandedRow = $(ev.sender.wrapper).data('expandedRow');
+        // Only one open at a time
+        if (expandedRow && expandedRow[0] != ev.masterRow[0]) {
+            var grid = $(ev.sender.wrapper).data('kendoGrid');
+            grid.collapseRow(expandedRow);
+        }
+        $(ev.sender.wrapper).data('expandedRow', ev.masterRow);
+    }
+
+
+    function myContactRegistrationActionUrl(data) {
+        if (data.UserName != null) {
+            return 'HideMe';
+        }
+        else {
+            var action = '@Url.Action("RegisterFromPipesContact", "Account")';
+            var html = kendo.format("{0}/{1}", action, data.CONTACTID);
+
+            return html;
+        }
+    }
+
+    function myContactUpdateActionUrl(data) {
+        if (data.UserName == null) {
+            return 'HideMe';
+        }
+        else {
+            var action = '@Url.Action("Create", "Account")';
+            var html = kendo.format("{0}/{1}", action, data.CONTACTID);
+
+            return html;
+        }
+    }
+
+    function customCommand() {
+        alert("custom Command called");
+    }
+
+</script>
+@(Html.Kendo().Grid<PORTAL.Models.spGetAllContactsForSearch_Result>()
+                                        .Name("Grid")
+                                        .Selectable(selection => selection.Mode(GridSelectionMode.Single))
+                                        .ToolBar(toolBar => toolBar.Template("<a class='k-button k-button-icontext k-grid-add' href='#' onlick='customCommand()'>Add New Contact/Portal Access</a>"))
+                                        .DataSource(dataSource => dataSource
+                                            .Ajax()
+                                            .Model(model => model.Id(m => m.CONTACTID))
+                                            .ServerOperation(false)
+                                            .Read(read => read.Action("Index_Read", "CONTACTS"))
+                                        )
+                                        .Columns(columns =>
+                                        {
+                                        columns.Bound(c => c.CONTACTID).Title("ContactId").Hidden(true);
+                                        columns.Bound(c => c.CONTACTNAME).Title("Name");
+                                        columns.Bound(c => c.EMAIL).Title("EMail");
+                                        columns.Bound(c => c.CONTACTTYPE).Title("Type");
+                                        columns.Bound(c => c.COMPANYID).Title("CompanyId").Hidden(true);
+                                        columns.Bound(c => c.COMPANYNAME).Title("Company");
+                                        columns.Bound(c => c.UserName).Title("UserName").Hidden(true);
+                                        columns.Template(@<text></text>).Title("<B>ACTIONS</B>").HtmlAttributes(new { @class = "templateCell" })
+                                                    .ClientTemplate(
+                                                                Html.Kendo().Menu()
+                                                                .Name("menu_mycontacts_#=CONTACTID#")
+                                                                .Orientation(MenuOrientation.Vertical).Direction("left")
+                                                                .Items(its =>
+                                                                {
+                                                                    its.Add().Text("SELECT").Items(nested =>
+                                                                    {
+                                                                        nested.Add().Text("<span class='noExpand'><i class='fa fa-hand-stop-o fa-fw' aria-hidden='true'></i>New Portal User Setup</span>").Url("#= myContactRegistrationActionUrl(data) #").HtmlAttributes(new { @class = "noExpand" });
+                                                                        nested.Add().Text("<span class='noExpand'><i class='fa fa-binoculars fa-fw' aria-hidden='true'></i> Request Inspection</span>").Url("#= myContactUpdateActionUrl(data) #").HtmlAttributes(new { @class = "noExpand" });
+                                                                    });
+                                                                })
+                                                            .ToClientTemplate().ToHtmlString()
+                                                            );
+                                        })
+                    .Events(ev => ev.DataBound("ContactsGridInitMenus"))
+                    .NoRecords(n => n.Template("NO RECORDS TO DISPLAY."))
+                    .Pageable(pageable => pageable
+                    .Refresh(true)
+                    .PageSizes(new[] { 5, 10, 20 })
+                    .ButtonCount(5))
+                    .Filterable(filterable => filterable
+                        .Extra(false)
+                        .Operators(operators => operators
+                            .ForString(str => str.Clear()
+                                .Contains("Contains")
+                                .StartsWith("Starts with")
+                                .IsEqualTo("Is equal to")
+                                .IsNotEqualTo("Is not equal to")
+                        ))
+                    )
+                    .Sortable()
+)
+
+
+<style>
+    .k-grid tr td {
+        overflow: visible;
+    }
+</style>

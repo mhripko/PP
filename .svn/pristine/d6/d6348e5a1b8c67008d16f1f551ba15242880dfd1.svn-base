@@ -1,0 +1,44 @@
+﻿@************************************************************************************@
+@************************************************************************************@
+@*****                                                                          *****@
+@*****  FileName: /Views/COMPANIES/Index.cshtml                               *****@
+@*****  Copyright: CCWRD - 2018                                                 *****@
+@*****  Author: Mark Hripko                                                     *****@
+@*****                                                                          *****@
+@*****  History: (Developer Initials)   Date    Description                     *****@
+@*****                                                                          *****@
+@************************************************************************************@
+@************************************************************************************@
+
+@model IEnumerable<PORTAL.Models.sp_GetAllCompanies_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Companies Index</h2>
+
+
+<br />
+@(Html.Kendo().Grid<PORTAL.Models.sp_GetAllCompanies_Result>()
+                    .Name("Grid")
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .ServerOperation(false)
+                        .Read(read => read.Action("Index_Read", "POCREQUEST"))
+                    )
+                    .Columns(columns =>
+                    {
+                        columns.Bound(c => c.COMPANYID).Title("CompanyId");
+                        columns.Bound(c => c.COMPANYNAME).Title("Name");
+                        columns.Bound(c => c.COMPANYTYPEID).Title("Type");
+                        columns.Bound(c => c.TELEPHONE).Title("Phone");
+                    })
+                    .NoRecords(n => n.Template("NO RECORDS TO DISPLAY."))
+                    .Pageable(pageable => pageable
+                    .Refresh(true)
+                    .PageSizes(new[] { 5, 10, 20 })
+                    .ButtonCount(5))
+)
+
+

@@ -1,0 +1,1305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PIPESPORTALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MustChangePW" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ContactId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="COMPANYPROJS">
+          <Key>
+            <PropertyRef Name="ProjCompanyID" />
+          </Key>
+          <Property Name="ProjCompanyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="bigint" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PDBLOOKUP">
+          <Key>
+            <PropertyRef Name="PDBLOOKUPID" />
+          </Key>
+          <Property Name="PDBLOOKUPID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIELDTYPE" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="VALUE" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERPOC">
+          <Key>
+            <PropertyRef Name="USERPOCID" />
+          </Key>
+          <Property Name="USERPOCID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactID" Type="bigint" Nullable="false" />
+          <Property Name="POCREQUESTID" Type="bigint" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERPROJS">
+          <Key>
+            <PropertyRef Name="PROJUSERID" />
+          </Key>
+          <Property Name="PROJUSERID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="bigint" Nullable="false" />
+          <Property Name="ContactID" Type="bigint" Nullable="false" />
+          <Property Name="CanReqPlanRev" Type="bit" Nullable="false" />
+          <Property Name="CanReqInsp" Type="bit" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spCompanyLookup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spDeleteContacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContactId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spDeleteInspectionRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InspectionRequestId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spDeleteLookup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LookupId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spDeletePlanReviewRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PlanReviewRequestId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spDeletePOCRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="POCRequestId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spGetAllCompanies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllContacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllContactsForSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spGetAllCreateNewProjectRequest_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllInspectionRequests_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllPlanReviewRequests_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllPOCRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllProjects_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spGetContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContactId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spGetMyProjects_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContactId" Type="bigint" Mode="In" />
+          <Parameter Name="ProjectId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spGetMyProjectsX_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spGetPlanReviewRequest_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PRREQUESTID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spGetProjectPlans_DONOTUSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spgetvwCompanyInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spInsertContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContactTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="INTERNALUSERNAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactName" Type="varchar" Mode="In" />
+          <Parameter Name="ContactPhone" Type="varchar" Mode="In" />
+          <Parameter Name="Extension" Type="varchar" Mode="In" />
+          <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+          <Parameter Name="CompanyId" Type="bigint" Mode="In" />
+          <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+          <Parameter Name="ADDED_BY" Type="varchar" Mode="In" />
+          <Parameter Name="ADDED_DT" Type="datetime" Mode="In" />
+          <Parameter Name="UPDATED_BY" Type="varchar" Mode="In" />
+          <Parameter Name="UPDATED_DT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spInsertCreateNewProjectRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="ParcelNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="ACCELA" Type="nvarchar" Mode="In" />
+          <Parameter Name="NSCROSSSTREETS" Type="varchar" Mode="In" />
+          <Parameter Name="EWCROSSSTREETS" Type="varchar" Mode="In" />
+          <Parameter Name="DEVELOPER" Type="varchar" Mode="In" />
+          <Parameter Name="DEVELOPERPROJECTNUMBER" Type="bigint" Mode="In" />
+          <Parameter Name="ENGINEERINGFIRM" Type="varchar" Mode="In" />
+          <Parameter Name="CONTRACTOR" Type="varchar" Mode="In" />
+          <Parameter Name="PDFFILE" Type="varchar" Mode="In" />
+          <Parameter Name="REQUEST_BY" Type="varchar" Mode="In" />
+          <Parameter Name="REQUEST_DT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spInsertPlanReviewRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectNumber" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="PDFFILE" Type="varchar" Mode="In" />
+          <Parameter Name="REQUEST_BY" Type="varchar" Mode="In" />
+          <Parameter Name="REQUEST_DT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spInsertPOCRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectDescription" Type="varchar" Mode="In" />
+          <Parameter Name="ParcelNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="ERU" Type="float" Mode="In" />
+          <Parameter Name="QAVG" Type="float" Mode="In" />
+          <Parameter Name="REQUEST_BY" Type="varchar" Mode="In" />
+          <Parameter Name="REQUEST_DT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spLINK_SYNC_COMPANIES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COMPANYID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spLINK_SYNC_CONTACT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CONTACTID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spUpdateCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COMPANYID" Type="bigint" Mode="In" />
+          <Parameter Name="COMPANYNAME" Type="varchar" Mode="In" />
+          <Parameter Name="COMPANYTYPEID" Type="bigint" Mode="In" />
+          <Parameter Name="ADDRESS" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESS2" Type="varchar" Mode="In" />
+          <Parameter Name="CITY" Type="varchar" Mode="In" />
+          <Parameter Name="STATE" Type="char" Mode="In" />
+          <Parameter Name="ZIP" Type="bigint" Mode="In" />
+          <Parameter Name="ZIP2" Type="bigint" Mode="In" />
+          <Parameter Name="TELEPHONE" Type="varchar" Mode="In" />
+          <Parameter Name="EXTENSION" Type="varchar" Mode="In" />
+          <Parameter Name="FAX" Type="varchar" Mode="In" />
+          <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+          <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+          <Parameter Name="UPDATED_BY" Type="varchar" Mode="In" />
+          <Parameter Name="UPDATED_DT" Type="datetime" Mode="In" />
+          <Parameter Name="CONTACTNAME" Type="varchar" Mode="In" />
+          <Parameter Name="IS_BPPORTALADMIN" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="PIPESPORTALModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANYPROJS" EntityType="Self.COMPANYPROJS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PDBLOOKUP" EntityType="Self.PDBLOOKUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERPOC" EntityType="Self.USERPOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERPROJS" EntityType="Self.USERPROJS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PIPESPORTALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MustChangePW" Type="Boolean" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactId" Type="Int64" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="COMPANYPROJS">
+          <Key>
+            <PropertyRef Name="ProjCompanyID" />
+          </Key>
+          <Property Name="ProjCompanyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int64" Nullable="false" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PDBLOOKUP">
+          <Key>
+            <PropertyRef Name="PDBLOOKUPID" />
+          </Key>
+          <Property Name="PDBLOOKUPID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIELDTYPE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VALUE" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERPOC">
+          <Key>
+            <PropertyRef Name="USERPOCID" />
+          </Key>
+          <Property Name="USERPOCID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactID" Type="Int64" Nullable="false" />
+          <Property Name="POCREQUESTID" Type="Int64" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERPROJS">
+          <Key>
+            <PropertyRef Name="PROJUSERID" />
+          </Key>
+          <Property Name="PROJUSERID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int64" Nullable="false" />
+          <Property Name="ContactID" Type="Int64" Nullable="false" />
+          <Property Name="CanReqPlanRev" Type="Boolean" Nullable="false" />
+          <Property Name="CanReqInsp" Type="Boolean" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PIPESPORTALEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="COMPANYPROJS" EntityType="Self.COMPANYPROJS" />
+          <EntitySet Name="PDBLOOKUP" EntityType="Self.PDBLOOKUP" />
+          <EntitySet Name="USERPOC" EntityType="Self.USERPOC" />
+          <EntitySet Name="USERPROJS" EntityType="Self.USERPROJS" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="spCompanyLookup" ReturnType="Collection(PIPESPORTALModel.spCompanyLookup_Result)">
+            <Parameter Name="CompanyId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteContacts">
+            <Parameter Name="ContactId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteInspectionRequest">
+            <Parameter Name="InspectionRequestId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteLookup">
+            <Parameter Name="LookupId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spDeletePlanReviewRequest">
+            <Parameter Name="PlanReviewRequestId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spDeletePOCRequest">
+            <Parameter Name="POCRequestId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spGetAllCompanies" ReturnType="Collection(PIPESPORTALModel.spGetAllCompanies_Result)" />
+          <FunctionImport Name="spGetAllContacts" ReturnType="Collection(PIPESPORTALModel.spGetAllContacts_Result)" />
+          <FunctionImport Name="spGetAllContactsForSearch" ReturnType="Collection(PIPESPORTALModel.spGetAllContactsForSearch_Result)">
+            <Parameter Name="CompanyId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spGetAllCreateNewProjectRequest_DONOTUSE" />
+          <FunctionImport Name="spGetAllInspectionRequests_DONOTUSE" ReturnType="Collection(PIPESPORTALModel.spGetAllInspectionRequests_DONOTUSE_Result)" />
+          <FunctionImport Name="spGetAllPlanReviewRequests_DONOTUSE" />
+          <FunctionImport Name="spGetAllPOCRequests" ReturnType="Collection(PIPESPORTALModel.spGetAllPOCRequests_Result)" />
+          <FunctionImport Name="spGetAllProjects_DONOTUSE" ReturnType="Collection(PIPESPORTALModel.spGetAllProjects_DONOTUSE_Result)" />
+          <FunctionImport Name="spGetAllRoles" ReturnType="Collection(PIPESPORTALModel.spGetAllRoles_Result)" />
+          <FunctionImport Name="spGetCompany" ReturnType="Collection(PIPESPORTALModel.spGetCompany_Result)">
+            <Parameter Name="CompanyId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spGetContact" ReturnType="Collection(PIPESPORTALModel.spGetContact_Result)">
+            <Parameter Name="ContactId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spGetMyProjects_DONOTUSE" ReturnType="Collection(PIPESPORTALModel.spGetMyProjects_DONOTUSE_Result)">
+            <Parameter Name="ContactId" Mode="In" Type="Int64" />
+            <Parameter Name="ProjectId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spGetMyProjectsX_DONOTUSE" ReturnType="Collection(PIPESPORTALModel.spGetMyProjectsX_DONOTUSE_Result)">
+            <Parameter Name="CID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spGetPlanReviewRequest_DONOTUSE">
+            <Parameter Name="PRREQUESTID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spGetProjectPlans_DONOTUSE" ReturnType="Collection(PIPESPORTALModel.spGetProjectPlans_DONOTUSE_Result)">
+            <Parameter Name="ProjID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spgetvwCompanyInfo">
+            <Parameter Name="cid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertContact" ReturnType="Collection(PIPESPORTALModel.spInsertContact_Result)">
+            <Parameter Name="ContactTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="INTERNALUSERNAME" Mode="In" Type="String" />
+            <Parameter Name="ContactName" Mode="In" Type="String" />
+            <Parameter Name="ContactPhone" Mode="In" Type="String" />
+            <Parameter Name="Extension" Mode="In" Type="String" />
+            <Parameter Name="EMAIL" Mode="In" Type="String" />
+            <Parameter Name="CompanyId" Mode="In" Type="Int64" />
+            <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+            <Parameter Name="ADDED_BY" Mode="In" Type="String" />
+            <Parameter Name="ADDED_DT" Mode="In" Type="DateTime" />
+            <Parameter Name="UPDATED_BY" Mode="In" Type="String" />
+            <Parameter Name="UPDATED_DT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertCreateNewProjectRequest">
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ParcelNumber" Mode="In" Type="String" />
+            <Parameter Name="ACCELA" Mode="In" Type="String" />
+            <Parameter Name="NSCROSSSTREETS" Mode="In" Type="String" />
+            <Parameter Name="EWCROSSSTREETS" Mode="In" Type="String" />
+            <Parameter Name="DEVELOPER" Mode="In" Type="String" />
+            <Parameter Name="DEVELOPERPROJECTNUMBER" Mode="In" Type="Int64" />
+            <Parameter Name="ENGINEERINGFIRM" Mode="In" Type="String" />
+            <Parameter Name="CONTRACTOR" Mode="In" Type="String" />
+            <Parameter Name="PDFFILE" Mode="In" Type="String" />
+            <Parameter Name="REQUEST_BY" Mode="In" Type="String" />
+            <Parameter Name="REQUEST_DT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertPlanReviewRequest">
+            <Parameter Name="ProjectNumber" Mode="In" Type="String" />
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="PDFFILE" Mode="In" Type="String" />
+            <Parameter Name="REQUEST_BY" Mode="In" Type="String" />
+            <Parameter Name="REQUEST_DT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertPOCRequest">
+            <Parameter Name="ProjectDescription" Mode="In" Type="String" />
+            <Parameter Name="ParcelNumber" Mode="In" Type="String" />
+            <Parameter Name="ERU" Mode="In" Type="Double" />
+            <Parameter Name="QAVG" Mode="In" Type="Double" />
+            <Parameter Name="REQUEST_BY" Mode="In" Type="String" />
+            <Parameter Name="REQUEST_DT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spLINK_SYNC_COMPANIES">
+            <Parameter Name="COMPANYID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spLINK_SYNC_CONTACT">
+            <Parameter Name="CONTACTID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateCompany">
+            <Parameter Name="COMPANYID" Mode="In" Type="Int64" />
+            <Parameter Name="COMPANYNAME" Mode="In" Type="String" />
+            <Parameter Name="COMPANYTYPEID" Mode="In" Type="Int64" />
+            <Parameter Name="ADDRESS" Mode="In" Type="String" />
+            <Parameter Name="ADDRESS2" Mode="In" Type="String" />
+            <Parameter Name="CITY" Mode="In" Type="String" />
+            <Parameter Name="STATE" Mode="In" Type="String" />
+            <Parameter Name="ZIP" Mode="In" Type="Int64" />
+            <Parameter Name="ZIP2" Mode="In" Type="Int64" />
+            <Parameter Name="TELEPHONE" Mode="In" Type="String" />
+            <Parameter Name="EXTENSION" Mode="In" Type="String" />
+            <Parameter Name="FAX" Mode="In" Type="String" />
+            <Parameter Name="EMAIL" Mode="In" Type="String" />
+            <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+            <Parameter Name="UPDATED_BY" Mode="In" Type="String" />
+            <Parameter Name="UPDATED_DT" Mode="In" Type="DateTime" />
+            <Parameter Name="CONTACTNAME" Mode="In" Type="String" />
+            <Parameter Name="IS_BPPORTALADMIN" Mode="In" Type="Boolean" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spCompanyLookup_Result">
+          <Property Type="Int64" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="64" />
+        </ComplexType>
+        <ComplexType Name="spGetAllCompanies_Result">
+          <Property Type="String" Name="COMPANYTYPE" Nullable="false" MaxLength="128" />
+          <Property Type="Int64" Name="COMPANYID" Nullable="false" />
+          <Property Type="String" Name="COMPANYNAME" Nullable="false" MaxLength="64" />
+          <Property Type="Int64" Name="COMPANYTYPEID" Nullable="false" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ADDRESS2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CITY" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="STATE" Nullable="true" MaxLength="2" />
+          <Property Type="Int64" Name="ZIP" Nullable="true" />
+          <Property Type="Int64" Name="ZIP2" Nullable="true" />
+          <Property Type="String" Name="TELEPHONE" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="EXTENSION" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="FAX" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="CONTACTNAME" Nullable="true" MaxLength="64" />
+        </ComplexType>
+        <ComplexType Name="spGetAllContacts_Result">
+          <Property Type="Int64" Name="CONTACTID" Nullable="false" />
+          <Property Type="Int64" Name="CONTACTTYPEID" Nullable="false" />
+          <Property Type="String" Name="INTERNALUSERNAME" Nullable="true" MaxLength="16" />
+          <Property Type="String" Name="CONTACTNAME" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="CONTACTPHONE" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="EXTENSION" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="64" />
+          <Property Type="Int64" Name="COMPANYID" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetAllContactsForSearch_Result">
+          <Property Type="Int64" Name="CONTACTID" Nullable="false" />
+          <Property Type="String" Name="CONTACTTYPE" Nullable="false" MaxLength="128" />
+          <Property Type="Int64" Name="CONTACTTYPEID" Nullable="false" />
+          <Property Type="String" Name="CONTACTNAME" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="CONTACTPHONE" Nullable="true" MaxLength="14" />
+          <Property Type="Int64" Name="COMPANYID" Nullable="true" />
+          <Property Type="String" Name="COMPANYNAME" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="spGetAllInspectionRequests_DONOTUSE_Result">
+          <Property Type="Int64" Name="INSPECTIONREQID" Nullable="false" />
+          <Property Type="Int64" Name="REQUESTSTATUSID" Nullable="false" />
+          <Property Type="Int64" Name="PROJECTID" Nullable="false" />
+          <Property Type="DateTime" Name="REQUESTDATE" Nullable="false" Precision="23" />
+          <Property Type="Int64" Name="CALLERID" Nullable="false" />
+          <Property Type="Int64" Name="FIELDCONTACTID" Nullable="false" />
+          <Property Type="Int64" Name="COMPANYID" Nullable="false" />
+          <Property Type="DateTime" Name="FROM_DT" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="TO_DT" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="WORK_SHIFT" Nullable="false" />
+          <Property Type="Time" Name="OT_STARTTIME" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetAllPOCRequests_Result">
+          <Property Type="Int64" Name="POCREQUESTID" Nullable="false" />
+          <Property Type="Int64" Name="PROJECTID" Nullable="true" />
+          <Property Type="String" Name="PROJECTDESC" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ParcelNumber" Nullable="false" MaxLength="14" />
+          <Property Type="Double" Name="ERU" Nullable="false" />
+          <Property Type="Double" Name="QAVG" Nullable="false" />
+          <Property Type="Int64" Name="ContactID" Nullable="false" />
+          <Property Type="String" Name="REQUEST_BY" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="REQUEST_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="STATUS" Nullable="false" MaxLength="12" />
+          <Property Type="DateTime" Name="PROCESS_DT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ISSUE_DT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EXPIRATION_DT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="POC_REQ_TRK_NUM" Nullable="true" MaxLength="9" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetAllProjects_DONOTUSE_Result">
+          <Property Type="Int64" Name="PROJECTID" Nullable="false" />
+          <Property Type="Boolean" Name="IS_VALID" Nullable="false" />
+          <Property Type="Int64" Name="PROJYEAR" Nullable="true" />
+          <Property Type="Int64" Name="PROJNUMSEQ" Nullable="true" />
+          <Property Type="String" Name="PROJECTNUMBER" Nullable="false" MaxLength="32" />
+          <Property Type="String" Name="PROJECTNAME" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="FKA" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="PROJECTSTATUSID" Nullable="false" />
+          <Property Type="Int64" Name="PREV_PROJECTSTATUSID" Nullable="true" />
+          <Property Type="Int64" Name="PROJECTTYPEID" Nullable="true" />
+          <Property Type="Int64" Name="PROJECTCLASSID" Nullable="true" />
+          <Property Type="Boolean" Name="PLANSREQUIRED" Nullable="false" />
+          <Property Type="String" Name="NSCROSSSTREETS" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="EWCROSSSTREETS" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="COUNTYPERMITREQ" Nullable="false" />
+          <Property Type="Boolean" Name="COUNTYPERMITAPPROVED" Nullable="false" />
+          <Property Type="Boolean" Name="ILA" Nullable="false" />
+          <Property Type="DateTime" Name="ILA_APPROVAL_DT" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="JOBSTART" Nullable="false" />
+          <Property Type="DateTime" Name="JOBSTARTDATE" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="BOND_DT" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="NA_BOND" Nullable="true" />
+          <Property Type="String" Name="BOND_BY" Nullable="true" MaxLength="16" />
+          <Property Type="DateTime" Name="ASBUILT_DT" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="NA_RECORD" Nullable="true" />
+          <Property Type="String" Name="RECORD_BY" Nullable="true" MaxLength="16" />
+          <Property Type="String" Name="FINAL_INSPECTOR" Nullable="true" MaxLength="16" />
+          <Property Type="DateTime" Name="FINAL_DT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="BOND_REL_INSPECTOR" Nullable="true" MaxLength="16" />
+          <Property Type="DateTime" Name="BOND_REL_DT" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="OVERSIZE" Nullable="false" />
+          <Property Type="Decimal" Name="OVERSIZECOST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="OVERSIZEBOARDAPPROVALDATE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="REFUND_NUMBER" Nullable="true" MaxLength="32" />
+          <Property Type="DateTime" Name="REFUND_DT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="LIFTSTATIONNUM" Nullable="true" MaxLength="64" />
+          <Property Type="Boolean" Name="MHADJUST" Nullable="false" />
+          <Property Type="String" Name="DEVELOPERPROJNUM" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="PROCTOR" Nullable="true" MaxLength="80" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetAllRoles_Result">
+          <Property Type="Int64" Name="ROLEID" Nullable="false" />
+          <Property Type="String" Name="ROLE_TYPE" Nullable="false" MaxLength="16" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetCompany_Result">
+          <Property Type="Int64" Name="COMPANYID" Nullable="false" />
+          <Property Type="String" Name="COMPANYNAME" Nullable="false" MaxLength="64" />
+          <Property Type="Int64" Name="COMPANYTYPEID" Nullable="false" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ADDRESS2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CITY" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="STATE" Nullable="true" MaxLength="2" />
+          <Property Type="Int64" Name="ZIP" Nullable="true" />
+          <Property Type="Int64" Name="ZIP2" Nullable="true" />
+          <Property Type="String" Name="TELEPHONE" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="EXTENSION" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="FAX" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="CONTACTNAME" Nullable="true" MaxLength="64" />
+        </ComplexType>
+        <ComplexType Name="spGetContact_Result">
+          <Property Type="Int64" Name="CONTACTID" Nullable="false" />
+          <Property Type="String" Name="CONTACTTYPE" Nullable="false" MaxLength="128" />
+          <Property Type="Int64" Name="CONTACTTYPEID" Nullable="false" />
+          <Property Type="String" Name="CONTACTNAME" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="CONTACTPHONE" Nullable="true" MaxLength="14" />
+          <Property Type="Int64" Name="COMPANYID" Nullable="true" />
+          <Property Type="String" Name="COMPANYNAME" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="spGetMyProjects_DONOTUSE_Result">
+          <Property Type="Int64" Name="PROJECTID" Nullable="true" />
+          <Property Type="String" Name="PROJECTNAME" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="PROJECTNUMBER" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="ProjStatus" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="PLANSREQUIRED" Nullable="true" />
+          <Property Type="Int64" Name="InspsExempt" Nullable="true" />
+          <Property Type="Int64" Name="PlanSubmittalID" Nullable="true" />
+          <Property Type="Int64" Name="PlanSubmittalStatusID" Nullable="true" />
+          <Property Type="String" Name="PSStatus" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="SubmittalDispositionID" Nullable="true" />
+          <Property Type="String" Name="PSDisp" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="PIIIWFNUM" Nullable="true" />
+          <Property Type="Int64" Name="PROJINSPSTATUSID" Nullable="true" />
+          <Property Type="String" Name="PIIStatus" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="PIIJSStatusID" Nullable="true" />
+          <Property Type="String" Name="PIIJSStatus" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="PIIJSDispID" Nullable="true" />
+          <Property Type="String" Name="PIIJSDisp" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="PIIJSDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="NumPIAs" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetMyProjectsX_DONOTUSE_Result">
+          <Property Type="Int64" Name="PROJECTID" Nullable="true" />
+          <Property Type="String" Name="PROJECTNAME" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="PROJECTNUMBER" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="ProjStatus" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="PLANSREQUIRED" Nullable="true" />
+          <Property Type="Int64" Name="InspsExempt" Nullable="true" />
+          <Property Type="Int64" Name="PlanSubmittalID" Nullable="true" />
+          <Property Type="Int64" Name="PlanSubmittalStatusID" Nullable="true" />
+          <Property Type="String" Name="PSStatus" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="SubmittalDispositionID" Nullable="true" />
+          <Property Type="String" Name="PSDisp" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="PROJINSPSTATUSID" Nullable="true" />
+          <Property Type="String" Name="PIIStatus" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <ComplexType Name="spGetProjectPlans_DONOTUSE_Result">
+          <Property Type="Int64" Name="PROJECTID" Nullable="true" />
+          <Property Type="String" Name="PROJECTNAME" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="PROJECTNUMBER" Nullable="true" MaxLength="32" />
+          <Property Type="Int64" Name="PlanSubmittalID" Nullable="true" />
+          <Property Type="String" Name="Media" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="PlanRevisionNumber" Nullable="true" />
+          <Property Type="Int64" Name="SubmittalNumber" Nullable="true" />
+          <Property Type="Int64" Name="SubmittalChildNumber" Nullable="true" />
+          <Property Type="DateTime" Name="Received_DT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PlanReviewStatus" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="DISPOSITION" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="TargetDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spInsertContact_Result">
+          <Property Type="Int64" Name="CONTACTID" Nullable="false" />
+          <Property Type="Int64" Name="CONTACTTYPEID" Nullable="false" />
+          <Property Type="String" Name="INTERNALUSERNAME" Nullable="true" MaxLength="16" />
+          <Property Type="String" Name="ContactName" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="ContactPhone" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="Extension" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="EMail" Nullable="true" MaxLength="64" />
+          <Property Type="Int64" Name="CompanyId" Nullable="true" />
+          <Property Type="Boolean" Name="Is_ACTIVE" Nullable="false" />
+          <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PIPESPORTALModelStoreContainer" CdmEntityContainer="PIPESPORTALEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MustChangePW" ColumnName="MustChangePW" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANYPROJS">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.COMPANYPROJS">
+              <MappingFragment StoreEntitySet="COMPANYPROJS">
+                <ScalarProperty Name="ProjCompanyID" ColumnName="ProjCompanyID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDBLOOKUP">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.PDBLOOKUP">
+              <MappingFragment StoreEntitySet="PDBLOOKUP">
+                <ScalarProperty Name="PDBLOOKUPID" ColumnName="PDBLOOKUPID" />
+                <ScalarProperty Name="FIELDTYPE" ColumnName="FIELDTYPE" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERPOC">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.USERPOC">
+              <MappingFragment StoreEntitySet="USERPOC">
+                <ScalarProperty Name="USERPOCID" ColumnName="USERPOCID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="POCREQUESTID" ColumnName="POCREQUESTID" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERPROJS">
+            <EntityTypeMapping TypeName="PIPESPORTALModel.USERPROJS">
+              <MappingFragment StoreEntitySet="USERPROJS">
+                <ScalarProperty Name="PROJUSERID" ColumnName="PROJUSERID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="CanReqPlanRev" ColumnName="CanReqPlanRev" />
+                <ScalarProperty Name="CanReqInsp" ColumnName="CanReqInsp" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="PIPESPORTALModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="spCompanyLookup" FunctionName="PIPESPORTALModel.Store.spCompanyLookup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spCompanyLookup_Result">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spDeleteContacts" FunctionName="PIPESPORTALModel.Store.spDeleteContacts" />
+          <FunctionImportMapping FunctionImportName="spDeleteInspectionRequest" FunctionName="PIPESPORTALModel.Store.spDeleteInspectionRequest" />
+          <FunctionImportMapping FunctionImportName="spDeleteLookup" FunctionName="PIPESPORTALModel.Store.spDeleteLookup" />
+          <FunctionImportMapping FunctionImportName="spDeletePlanReviewRequest" FunctionName="PIPESPORTALModel.Store.spDeletePlanReviewRequest" />
+          <FunctionImportMapping FunctionImportName="spDeletePOCRequest" FunctionName="PIPESPORTALModel.Store.spDeletePOCRequest" />
+          <FunctionImportMapping FunctionImportName="spGetAllCompanies" FunctionName="PIPESPORTALModel.Store.spGetAllCompanies">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetAllCompanies_Result">
+                <ScalarProperty Name="COMPANYTYPE" ColumnName="COMPANYTYPE" />
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="COMPANYNAME" ColumnName="COMPANYNAME" />
+                <ScalarProperty Name="COMPANYTYPEID" ColumnName="COMPANYTYPEID" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ZIP2" ColumnName="ZIP2" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CONTACTNAME" ColumnName="CONTACTNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetAllContacts" FunctionName="PIPESPORTALModel.Store.spGetAllContacts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetAllContacts_Result">
+                <ScalarProperty Name="CONTACTID" ColumnName="CONTACTID" />
+                <ScalarProperty Name="CONTACTTYPEID" ColumnName="CONTACTTYPEID" />
+                <ScalarProperty Name="INTERNALUSERNAME" ColumnName="INTERNALUSERNAME" />
+                <ScalarProperty Name="CONTACTNAME" ColumnName="CONTACTNAME" />
+                <ScalarProperty Name="CONTACTPHONE" ColumnName="CONTACTPHONE" />
+                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetAllContactsForSearch" FunctionName="PIPESPORTALModel.Store.spGetAllContactsForSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetAllContactsForSearch_Result">
+                <ScalarProperty Name="CONTACTID" ColumnName="CONTACTID" />
+                <ScalarProperty Name="CONTACTTYPE" ColumnName="CONTACTTYPE" />
+                <ScalarProperty Name="CONTACTTYPEID" ColumnName="CONTACTTYPEID" />
+                <ScalarProperty Name="CONTACTNAME" ColumnName="CONTACTNAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="CONTACTPHONE" ColumnName="CONTACTPHONE" />
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="COMPANYNAME" ColumnName="COMPANYNAME" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetAllCreateNewProjectRequest_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetAllCreateNewProjectRequest_DONOTUSE" />
+          <FunctionImportMapping FunctionImportName="spGetAllInspectionRequests_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetAllInspectionRequests_DONOTUSE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetAllInspectionRequests_DONOTUSE_Result">
+                <ScalarProperty Name="INSPECTIONREQID" ColumnName="INSPECTIONREQID" />
+                <ScalarProperty Name="REQUESTSTATUSID" ColumnName="REQUESTSTATUSID" />
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="REQUESTDATE" ColumnName="REQUESTDATE" />
+                <ScalarProperty Name="CALLERID" ColumnName="CALLERID" />
+                <ScalarProperty Name="FIELDCONTACTID" ColumnName="FIELDCONTACTID" />
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="FROM_DT" ColumnName="FROM_DT" />
+                <ScalarProperty Name="TO_DT" ColumnName="TO_DT" />
+                <ScalarProperty Name="WORK_SHIFT" ColumnName="WORK_SHIFT" />
+                <ScalarProperty Name="OT_STARTTIME" ColumnName="OT_STARTTIME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetAllPlanReviewRequests_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetAllPlanReviewRequests_DONOTUSE" />
+          <FunctionImportMapping FunctionImportName="spGetAllPOCRequests" FunctionName="PIPESPORTALModel.Store.spGetAllPOCRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetAllPOCRequests_Result">
+                <ScalarProperty Name="POCREQUESTID" ColumnName="POCREQUESTID" />
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="PROJECTDESC" ColumnName="PROJECTDESC" />
+                <ScalarProperty Name="ParcelNumber" ColumnName="ParcelNumber" />
+                <ScalarProperty Name="ERU" ColumnName="ERU" />
+                <ScalarProperty Name="QAVG" ColumnName="QAVG" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="REQUEST_BY" ColumnName="REQUEST_BY" />
+                <ScalarProperty Name="REQUEST_DT" ColumnName="REQUEST_DT" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="PROCESS_DT" ColumnName="PROCESS_DT" />
+                <ScalarProperty Name="ISSUE_DT" ColumnName="ISSUE_DT" />
+                <ScalarProperty Name="EXPIRATION_DT" ColumnName="EXPIRATION_DT" />
+                <ScalarProperty Name="POC_REQ_TRK_NUM" ColumnName="POC_REQ_TRK_NUM" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetAllProjects_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetAllProjects_DONOTUSE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetAllProjects_DONOTUSE_Result">
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="IS_VALID" ColumnName="IS_VALID" />
+                <ScalarProperty Name="PROJYEAR" ColumnName="PROJYEAR" />
+                <ScalarProperty Name="PROJNUMSEQ" ColumnName="PROJNUMSEQ" />
+                <ScalarProperty Name="PROJECTNUMBER" ColumnName="PROJECTNUMBER" />
+                <ScalarProperty Name="PROJECTNAME" ColumnName="PROJECTNAME" />
+                <ScalarProperty Name="FKA" ColumnName="FKA" />
+                <ScalarProperty Name="PROJECTSTATUSID" ColumnName="PROJECTSTATUSID" />
+                <ScalarProperty Name="PREV_PROJECTSTATUSID" ColumnName="PREV_PROJECTSTATUSID" />
+                <ScalarProperty Name="PROJECTTYPEID" ColumnName="PROJECTTYPEID" />
+                <ScalarProperty Name="PROJECTCLASSID" ColumnName="PROJECTCLASSID" />
+                <ScalarProperty Name="PLANSREQUIRED" ColumnName="PLANSREQUIRED" />
+                <ScalarProperty Name="NSCROSSSTREETS" ColumnName="NSCROSSSTREETS" />
+                <ScalarProperty Name="EWCROSSSTREETS" ColumnName="EWCROSSSTREETS" />
+                <ScalarProperty Name="COUNTYPERMITREQ" ColumnName="COUNTYPERMITREQ" />
+                <ScalarProperty Name="COUNTYPERMITAPPROVED" ColumnName="COUNTYPERMITAPPROVED" />
+                <ScalarProperty Name="ILA" ColumnName="ILA" />
+                <ScalarProperty Name="ILA_APPROVAL_DT" ColumnName="ILA_APPROVAL_DT" />
+                <ScalarProperty Name="JOBSTART" ColumnName="JOBSTART" />
+                <ScalarProperty Name="JOBSTARTDATE" ColumnName="JOBSTARTDATE" />
+                <ScalarProperty Name="BOND_DT" ColumnName="BOND_DT" />
+                <ScalarProperty Name="NA_BOND" ColumnName="NA_BOND" />
+                <ScalarProperty Name="BOND_BY" ColumnName="BOND_BY" />
+                <ScalarProperty Name="ASBUILT_DT" ColumnName="ASBUILT_DT" />
+                <ScalarProperty Name="NA_RECORD" ColumnName="NA_RECORD" />
+                <ScalarProperty Name="RECORD_BY" ColumnName="RECORD_BY" />
+                <ScalarProperty Name="FINAL_INSPECTOR" ColumnName="FINAL_INSPECTOR" />
+                <ScalarProperty Name="FINAL_DT" ColumnName="FINAL_DT" />
+                <ScalarProperty Name="BOND_REL_INSPECTOR" ColumnName="BOND_REL_INSPECTOR" />
+                <ScalarProperty Name="BOND_REL_DT" ColumnName="BOND_REL_DT" />
+                <ScalarProperty Name="OVERSIZE" ColumnName="OVERSIZE" />
+                <ScalarProperty Name="OVERSIZECOST" ColumnName="OVERSIZECOST" />
+                <ScalarProperty Name="OVERSIZEBOARDAPPROVALDATE" ColumnName="OVERSIZEBOARDAPPROVALDATE" />
+                <ScalarProperty Name="REFUND_NUMBER" ColumnName="REFUND_NUMBER" />
+                <ScalarProperty Name="REFUND_DT" ColumnName="REFUND_DT" />
+                <ScalarProperty Name="LIFTSTATIONNUM" ColumnName="LIFTSTATIONNUM" />
+                <ScalarProperty Name="MHADJUST" ColumnName="MHADJUST" />
+                <ScalarProperty Name="DEVELOPERPROJNUM" ColumnName="DEVELOPERPROJNUM" />
+                <ScalarProperty Name="PROCTOR" ColumnName="PROCTOR" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetAllRoles" FunctionName="PIPESPORTALModel.Store.spGetAllRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetAllRoles_Result">
+                <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+                <ScalarProperty Name="ROLE_TYPE" ColumnName="ROLE_TYPE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetCompany" FunctionName="PIPESPORTALModel.Store.spGetCompany">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetCompany_Result">
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="COMPANYNAME" ColumnName="COMPANYNAME" />
+                <ScalarProperty Name="COMPANYTYPEID" ColumnName="COMPANYTYPEID" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ZIP2" ColumnName="ZIP2" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="CONTACTNAME" ColumnName="CONTACTNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetContact" FunctionName="PIPESPORTALModel.Store.spGetContact">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetContact_Result">
+                <ScalarProperty Name="CONTACTID" ColumnName="CONTACTID" />
+                <ScalarProperty Name="CONTACTTYPE" ColumnName="CONTACTTYPE" />
+                <ScalarProperty Name="CONTACTTYPEID" ColumnName="CONTACTTYPEID" />
+                <ScalarProperty Name="CONTACTNAME" ColumnName="CONTACTNAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="CONTACTPHONE" ColumnName="CONTACTPHONE" />
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="COMPANYNAME" ColumnName="COMPANYNAME" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetMyProjects_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetMyProjects_DONOTUSE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetMyProjects_DONOTUSE_Result">
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="PROJECTNAME" ColumnName="PROJECTNAME" />
+                <ScalarProperty Name="PROJECTNUMBER" ColumnName="PROJECTNUMBER" />
+                <ScalarProperty Name="ProjStatus" ColumnName="ProjStatus" />
+                <ScalarProperty Name="PLANSREQUIRED" ColumnName="PLANSREQUIRED" />
+                <ScalarProperty Name="InspsExempt" ColumnName="InspsExempt" />
+                <ScalarProperty Name="PlanSubmittalID" ColumnName="PlanSubmittalID" />
+                <ScalarProperty Name="PlanSubmittalStatusID" ColumnName="PlanSubmittalStatusID" />
+                <ScalarProperty Name="PSStatus" ColumnName="PSStatus" />
+                <ScalarProperty Name="SubmittalDispositionID" ColumnName="SubmittalDispositionID" />
+                <ScalarProperty Name="PSDisp" ColumnName="PSDisp" />
+                <ScalarProperty Name="PIIIWFNUM" ColumnName="PIIIWFNUM" />
+                <ScalarProperty Name="PROJINSPSTATUSID" ColumnName="PROJINSPSTATUSID" />
+                <ScalarProperty Name="PIIStatus" ColumnName="PIIStatus" />
+                <ScalarProperty Name="PIIJSStatusID" ColumnName="PIIJSStatusID" />
+                <ScalarProperty Name="PIIJSStatus" ColumnName="PIIJSStatus" />
+                <ScalarProperty Name="PIIJSDispID" ColumnName="PIIJSDispID" />
+                <ScalarProperty Name="PIIJSDisp" ColumnName="PIIJSDisp" />
+                <ScalarProperty Name="PIIJSDate" ColumnName="PIIJSDate" />
+                <ScalarProperty Name="NumPIAs" ColumnName="NumPIAs" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetMyProjectsX_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetMyProjectsX_DONOTUSE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetMyProjectsX_DONOTUSE_Result">
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="PROJECTNAME" ColumnName="PROJECTNAME" />
+                <ScalarProperty Name="PROJECTNUMBER" ColumnName="PROJECTNUMBER" />
+                <ScalarProperty Name="ProjStatus" ColumnName="ProjStatus" />
+                <ScalarProperty Name="PLANSREQUIRED" ColumnName="PLANSREQUIRED" />
+                <ScalarProperty Name="InspsExempt" ColumnName="InspsExempt" />
+                <ScalarProperty Name="PlanSubmittalID" ColumnName="PlanSubmittalID" />
+                <ScalarProperty Name="PlanSubmittalStatusID" ColumnName="PlanSubmittalStatusID" />
+                <ScalarProperty Name="PSStatus" ColumnName="PSStatus" />
+                <ScalarProperty Name="SubmittalDispositionID" ColumnName="SubmittalDispositionID" />
+                <ScalarProperty Name="PSDisp" ColumnName="PSDisp" />
+                <ScalarProperty Name="PROJINSPSTATUSID" ColumnName="PROJINSPSTATUSID" />
+                <ScalarProperty Name="PIIStatus" ColumnName="PIIStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetPlanReviewRequest_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetPlanReviewRequest_DONOTUSE" />
+          <FunctionImportMapping FunctionImportName="spGetProjectPlans_DONOTUSE" FunctionName="PIPESPORTALModel.Store.spGetProjectPlans_DONOTUSE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spGetProjectPlans_DONOTUSE_Result">
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="PROJECTNAME" ColumnName="PROJECTNAME" />
+                <ScalarProperty Name="PROJECTNUMBER" ColumnName="PROJECTNUMBER" />
+                <ScalarProperty Name="PlanSubmittalID" ColumnName="PlanSubmittalID" />
+                <ScalarProperty Name="Media" ColumnName="Media" />
+                <ScalarProperty Name="PlanRevisionNumber" ColumnName="PlanRevisionNumber" />
+                <ScalarProperty Name="SubmittalNumber" ColumnName="SubmittalNumber" />
+                <ScalarProperty Name="SubmittalChildNumber" ColumnName="SubmittalChildNumber" />
+                <ScalarProperty Name="Received_DT" ColumnName="Received_DT" />
+                <ScalarProperty Name="PlanReviewStatus" ColumnName="PlanReviewStatus" />
+                <ScalarProperty Name="DISPOSITION" ColumnName="DISPOSITION" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spgetvwCompanyInfo" FunctionName="PIPESPORTALModel.Store.spgetvwCompanyInfo" />
+          <FunctionImportMapping FunctionImportName="spInsertContact" FunctionName="PIPESPORTALModel.Store.spInsertContact">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PIPESPORTALModel.spInsertContact_Result">
+                <ScalarProperty Name="CONTACTID" ColumnName="CONTACTID" />
+                <ScalarProperty Name="CONTACTTYPEID" ColumnName="CONTACTTYPEID" />
+                <ScalarProperty Name="INTERNALUSERNAME" ColumnName="INTERNALUSERNAME" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Is_ACTIVE" ColumnName="Is_ACTIVE" />
+                <ScalarProperty Name="ADDED_BY" ColumnName="ADDED_BY" />
+                <ScalarProperty Name="ADDED_DT" ColumnName="ADDED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spInsertCreateNewProjectRequest" FunctionName="PIPESPORTALModel.Store.spInsertCreateNewProjectRequest" />
+          <FunctionImportMapping FunctionImportName="spInsertPlanReviewRequest" FunctionName="PIPESPORTALModel.Store.spInsertPlanReviewRequest" />
+          <FunctionImportMapping FunctionImportName="spInsertPOCRequest" FunctionName="PIPESPORTALModel.Store.spInsertPOCRequest" />
+          <FunctionImportMapping FunctionImportName="spLINK_SYNC_COMPANIES" FunctionName="PIPESPORTALModel.Store.spLINK_SYNC_COMPANIES" />
+          <FunctionImportMapping FunctionImportName="spLINK_SYNC_CONTACT" FunctionName="PIPESPORTALModel.Store.spLINK_SYNC_CONTACT" />
+          <FunctionImportMapping FunctionImportName="spUpdateCompany" FunctionName="PIPESPORTALModel.Store.spUpdateCompany" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

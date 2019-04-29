@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @(Html.Kendo().Grid<PORTAL.Models.sp_GetAllContacts_Result>()
+            .Name("grid")
+            //.DataSource(ds => ds.Server().PageSize(10))
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .ServerOperation(false)
+                .Read(read => read.Action("GetContacts_Read", "Requests"))
+                .PageSize(10)
+            )
+            //.Columns(columns =>
+            //{
+            //columns.Bound(c => c.USERNAME).Width("25%").HtmlAttributes(new { @style = "text-align: left;" });
+            //})
+            .HtmlAttributes(new { style = "height: 100%; width:100%;" })
+            //.Scrollable()
+            .Groupable()
+            .Sortable()
+            .Filterable(filterable => filterable
+                        .Extra(false)
+                        .Operators(operators => operators
+                                    .ForString(str => str.Clear()
+                                    .Contains("Contains")
+                                    .StartsWith("Starts with")
+                                    .IsEqualTo("Is equal to")
+                                    .IsNotEqualTo("Is not equal to")
+                        ))
+            )
+            .NoRecords(n => n.Template("NO RECORDS TO DISPLAY."))
+            .Pageable(pageable => pageable
+            .PageSizes(new[] { 10, 15 })
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+    //.Events(ev => ev.DataBound("initMenus"))
+    //  .BindTo(Model)
+    )
+</div>

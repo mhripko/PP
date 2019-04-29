@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNet.Identity
+@if (User.Identity.IsAuthenticated && (User.Identity.GetUserName().ToLower() == "ppadmin@lvp.com".ToLower() || User.Identity.GetUserName().ToLower() == "bpadmin@lvp.com".ToLower() || User.Identity.GetUserName().ToLower() == "bpuser@lvp.com".ToLower()))
+{
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Tasks
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("1a. Submit Point Of Connection (POC) Request", "Create", "POCREQUEST", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("1b. New Project Request", "Create", "PROJREQUEST", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("1c. Plan Review Request", "Create", "PLANREVIEWREQUEST", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("1d. Inspection Request", "Create", "INSPECTIONREQ", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("2.  View Status of Requests", "Index", "POCREQUEST", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("3.  View Company Profile", "Details", "Companies", routeValues: new { id = 138 }, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("4.  Change Password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        @Html.Partial("_BPAdminTasks")
+        @Html.Partial("_PPAdminTasks")
+    </ul>
+</li>
+}
+
+
+
+        

@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated && User.IsInRole("PortalAdmin"))
+{
+    <li>@Html.ActionLink("<--------Portal Partner Administrator-------->", "Index", "Home")</li>
+    <li>@Html.ActionLink("Create Business Partner Administrator", "Register", "BPADMIN")</li>
+    <li>@Html.ActionLink("Company Administration", "Index", "COMPANIES", routeValues: null, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("Contact Administration", "Index", "Contacts", routeValues: null, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("Users Administration", "Index", "UsersAdmin", routeValues: null, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("Roles Administration", "Index", "RolesAdmin", routeValues: null, htmlAttributes: null)</li>
+}

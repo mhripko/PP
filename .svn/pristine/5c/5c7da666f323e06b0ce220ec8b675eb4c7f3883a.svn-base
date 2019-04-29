@@ -1,0 +1,127 @@
+﻿@************************************************************************************@
+@************************************************************************************@
+@*****                                                                          *****@
+@*****  FileName: /Views/PROJREQUEST/MyProjects.cshtml                          *****@
+@*****  Copyright: CCWRD - 2018                                                 *****@
+@*****  Author: Aaron Araujo                                                    *****@
+@*****                                                                          *****@
+@************************************************************************************@
+@************************************************************************************@
+
+@{
+    ViewBag.Title = "My Projects";
+}
+
+<script type="text/javascript">
+
+    // Used by Kendo Grid to Initialize the Actions column menus
+    function ProjectsGridInitMenus(e) {
+        var grid = this;
+        $(".templateCell").each(function () {
+            var cell = $(this),
+                item = grid.dataItem(cell.closest("tr"));
+
+            eval($(this).children("script").last().html());
+
+            var menu = $("#menu_myprojects_" + item.PROJECTID).data("kendoMenu");
+            if (menu) {
+                // Could put something here to conditionally remove a menu based on something in the data
+                // In our case we're going to remove ANY menu items that have the text of 'HideMe'
+                menu.remove('.k-item:has(>a[href*="HideMe"]),.k-item[onclick*="HideMe"]');
+            }
+        });
+    }
+
+    // Used to insure only one detail row per grid is open at a time
+    function detailExpand(ev) {
+        var expandedRow = $(ev.sender.wrapper).data('expandedRow');
+        // Only one open at a time
+        if (expandedRow && expandedRow[0] != ev.masterRow[0]) {
+            var grid = $(ev.sender.wrapper).data('kendoGrid');
+            grid.collapseRow(expandedRow);
+        }
+        $(ev.sender.wrapper).data('expandedRow', ev.masterRow);
+    }
+
+
+    function myProjectsCheckPlanReviewActionUrl(data) {
+        if (data.PSDisp == "PLANS APPROVED") {
+            return 'HideMe';
+        }
+    }
+
+
+    function myProjectsCheckInspectionActionUrl(data) {
+        if (data.InspsExempt != null) {
+            return 'HideMe';
+        }
+    }
+
+</script>
+
+<h2>My Projects</h2>
+
+<br />
+@if ((bool)ViewData["UCCP"])
+{
+    <p><a href="/PROJREQUEST/Create" class="btn btn-primary btn-lg">Create a Project &raquo;</a></p>
+}
+
+<div class="centeredElement" style="height: auto !important;">
+    @(Html.Kendo().Grid<PORTAL.Models.spGetMyProjects_Result>()
+        .Name("myProjectsGrid")
+        .DataSource(dataSource => dataSource
+                                        .Ajax()
+                                        .ServerOperation(false)
+                                        .Read(read => read.Action("MyProjects_Read", "PROJREQUEST", new { id = ViewData["CID"] }))
+                                        .PageSize(25)
+        )
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.PROJECTNUMBER).Title("PIPES #").HtmlAttributes(new { @class = "text-align: center;" });
+            columns.Bound(c => c.PROJECTNAME).Title("PROJECT").HtmlAttributes(new { @class = "text-align: center;" });
+            columns.Template(@<text></text>).Title("<B>ACTIONS</B>").HtmlAttributes(new { @class = "templateCell" })
+                .ClientTemplate(
+                    Html.Kendo().Menu()
+                        .Name("menu_myprojects_#=PROJECTID#")
+                        .Orientation(MenuOrientation.Vertical).Direction("left")
+                        .Items(its =>
+                        {
+                            its.Add().Text("SELECT").Items(nested =>
+                            {
+                                nested.Add().Text("<span class='noExpand'><i class='fa fa-hand-stop-o fa-fw' aria-hidden='true'></i> Request Plan Review</span>").Url("#= myProjectsCheckPlanReviewActionUrl(data) #").HtmlAttributes(new { @class = "noExpand" });
+                                nested.Add().Text("<span class='noExpand'><i class='fa fa-binoculars fa-fw' aria-hidden='true'></i> Request Inspection</span>").Url("#= myProjectsCheckInspectionActionUrl(data) #").HtmlAttributes(new { @class = "noExpand" });
+                                nested.Add().Text("<span><i class='fa fa-binoculars fa-fw' aria-hidden='true'></i>&nbsp;&nbsp;PLACEHOLDER</span>");
+                            });
+                        })
+                    .ToClientTemplate().ToHtmlString()
+                );
+        })
+        .Events(ev => ev.DataBound("ProjectsGridInitMenus"))
+        .HtmlAttributes(new { style = "height: 100%; width: 100%; font-size: 1em !important;" })
+        .Filterable(filterable => filterable
+            .Extra(false)
+            .Operators(operators => operators
+                .ForString(str => str.Clear()
+                    .Contains("Contains")
+                    .StartsWith("Starts with")
+                    .IsEqualTo("Is equal to")
+                    .IsNotEqualTo("Is not equal to")
+                ))
+        )
+        .Groupable()
+        .Sortable()
+        .NoRecords(n => n.Template("YOU HAVE NOT BEEN ASSIGNED ANY PROJECTS."))
+        .Pageable(pageable => pageable
+                                .Refresh(true)
+                                .PageSizes(true)
+                                .PageSizes(new[] { 5, 10 })
+                                .ButtonCount(5))
+    )
+</div>
+
+<style>
+    .k-grid tr td {
+        overflow: visible;
+    }
+</style>

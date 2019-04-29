@@ -1,0 +1,114 @@
+﻿@model PIPES_Portal.Models.POCREQUEST
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>POCREQUEST</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECTID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECTID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECTDESC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECTDESC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParcelNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParcelNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ERU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ERU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QAVG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QAVG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REQUEST_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REQUEST_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REQUEST_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REQUEST_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROCESS_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROCESS_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISSUE_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISSUE_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXPIRATION_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXPIRATION_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POC_REQ_TRK_NUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POC_REQ_TRK_NUM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.POCREQUESTID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

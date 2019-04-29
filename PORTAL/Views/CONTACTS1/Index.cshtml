@@ -1,0 +1,99 @@
+﻿@model IEnumerable<PORTAL.Models.CONTACTS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.INTERNALUSERNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTACTNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTACTPHONE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EXTENSION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMPANYID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IS_ACTIVE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ADDED_BY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ADDED_DT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UPDATED_BY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UPDATED_DT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LOOKUP.FIELDTYPE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.INTERNALUSERNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTACTNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTACTPHONE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXTENSION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMPANYID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IS_ACTIVE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADDED_BY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADDED_DT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UPDATED_BY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UPDATED_DT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LOOKUP.FIELDTYPE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CONTACTID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CONTACTID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CONTACTID })
+        </td>
+    </tr>
+}
+
+</table>

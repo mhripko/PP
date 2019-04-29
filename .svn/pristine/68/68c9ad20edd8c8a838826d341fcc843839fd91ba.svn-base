@@ -1,0 +1,136 @@
+﻿@model PORTAL.Models.INSPECTIONREQ
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>INSPECTIONREQ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.REQUESTDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REQUESTDATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FROM_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FROM_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TO_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TO_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OT_STARTTIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OT_STARTTIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_ACTIVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_ACTIVE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDED_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDED_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDED_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDED_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPDATED_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPDATED_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPDATED_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPDATED_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTACT.INTERNALUSERNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTACT.INTERNALUSERNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTACT1.INTERNALUSERNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTACT1.INTERNALUSERNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECT.PROJECTNUMBER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECT.PROJECTNUMBER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOOKUP.FIELDTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOOKUP.FIELDTYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOOKUP1.FIELDTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOOKUP1.FIELDTYPE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

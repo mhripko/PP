@@ -1,0 +1,120 @@
+﻿@model PORTAL.Models.POCREQUEST
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>POCREQUEST</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECTID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECTID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECTDESC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECTDESC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParcelNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParcelNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ERU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ERU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QAVG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QAVG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REQUEST_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REQUEST_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REQUEST_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REQUEST_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROCESS_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROCESS_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISSUE_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISSUE_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXPIRATION_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXPIRATION_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POC_REQ_TRK_NUM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POC_REQ_TRK_NUM)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

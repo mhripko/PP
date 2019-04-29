@@ -1,0 +1,263 @@
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using PORTAL.Models;
+using PORTAL.Custom;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using System.Data.SqlClient;
+using System.Configuration;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
+namespace PORTAL.Controllers
+{
+    public class PROJREQUESTController : Controller
+    {
+        private PIPESPORTALEntities _db = new PIPESPORTALEntities();
+
+        HttpClient _client;
+        
+        //The URL of the WEB API Service
+        string _url = "http://localhost:60143/api/EmployeeInfoAPI";
+
+        //The HttpClient Class, this will be used for performing 
+        //HTTP Operations, GET, POST, PUT, DELETE
+        //Set the base address and the Header Formatter
+        public PROJREQUESTController()
+        {
+            _client = new HttpClient();
+            _client.BaseAddress = new Uri(_url);
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        // GET: PROJREQUEST
+        public ActionResult Index()
+        {
+
+            return View();
+        }
+
+
+        public ActionResult MyProjects()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// GetProjectAsync returns projects for a given contact
+        /// </summary>
+        /// <param name="path">The uri of the web api query</param>
+        /// <param name="contactId"></param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        async Task<spGetMyProjects_Result> GetProjectAsync(string path, long? contactId, long? projectId)
+        {
+            spGetMyProjects_Result projects = null;
+            HttpClient client = new HttpClient();
+            // Update port # in the following line.
+            _client.BaseAddress = new Uri(path);
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await _client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                projects = await response.Content.ReadAsAsync<spGetMyProjects_Result>();
+            }
+            return projects;
+        }
+
+
+        /// <summary>
+        /// MyProjects_Read is called by a Kendo UI Grid to read the rows.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public ActionResult MyProjects_Read([DataSourceRequest]DataSourceRequest request, long? contactId = 0, long? projectId = 0 , string pf = "")
+        {
+            if ((long)contactId == 0)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            string uri = string.Format("http://localhost:2932/api/contacts/{0}/projects/{1}", contactId, projectId);
+            
+            List<spGetMyProjects_Result> mps = _db.spGetMyProjects(contactId, projectId).ToList();
+            //List<spGetMyProjects_Result> mps = GetProjectAsync(uri, contactId, projectId);
+
+            if ((string)pf != "")
+            {
+                if ((string)pf == "PR")
+                    mps = mps.Where(f => f.PLANSREQUIRED == true).ToList();
+                else if ((string)pf == "INSP")
+                    mps = mps.Where(f => f.InspsExempt == null).ToList();
+            }
+
+            DataSourceResult result = mps.ToDataSourceResult(request);
+
+            return Json(result);
+        }
+
+
+        /// <summary>
+        /// Index_Read is called by a Kendo UI Grid to read the rows.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public ActionResult Index_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            List<spGetAllCreateNewProjectRequest_Result> pocr = _db.spGetAllCreateNewProjectRequest().ToList();
+            DataSourceResult result = (pocr).ToDataSourceResult(request);
+
+            return Json(result);
+        }
+
+
+        // GET: PROJREQUEST/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: PROJREQUEST/Create
+        public ActionResult Create()
+        {
+            // Add code here to load the user's ContactID in case of CANCEL - AOA
+
+            return View();
+        }
+
+        // POST: PROJREQUEST/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            if (ModelState.IsValid)
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_InsCreateNewProjectRequest", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@ProjectName", System.Data.SqlDbType.VarChar).Value = collection["ProjectName"].ToString();
+                        cmd.Parameters.Add("@ParcelNumber", System.Data.SqlDbType.VarChar).Value = collection["ParcelNumber"].ToString();
+                        cmd.Parameters.Add("@ACCELA", System.Data.SqlDbType.VarChar).Value = collection["ACCELA"].ToString();
+                        cmd.Parameters.Add("@NSCROSSSTREETS", System.Data.SqlDbType.VarChar).Value = collection["NSCROSSSTREETS"].ToString();
+                        cmd.Parameters.Add("@EWCROSSSTREETS", System.Data.SqlDbType.VarChar).Value = collection["EWCROSSSTREETS"].ToString();
+                        cmd.Parameters.Add("@DEVELOPER", System.Data.SqlDbType.VarChar).Value = collection["DEVELOPER"].ToString();
+                        cmd.Parameters.Add("@DEVELOPERPROJECTNUMBER", System.Data.SqlDbType.BigInt).Value = Convert.ToInt32(collection["DEVELOPERPROJECTNUMBER"]);
+                        cmd.Parameters.Add("@ENGINEERINGFIRM", System.Data.SqlDbType.VarChar).Value = collection["ENGINEERINGFIRM"].ToString();
+                        cmd.Parameters.Add("@CONTRACTOR", System.Data.SqlDbType.VarChar).Value = collection["CONTRACTOR"].ToString();
+                        cmd.Parameters.Add("@PDFFILE", System.Data.SqlDbType.VarChar).Value = string.Empty;
+                        cmd.Parameters.Add("@REQUEST_BY", System.Data.SqlDbType.VarChar).Value = "bpuser@lvp.com";
+                        cmd.Parameters.Add("@REQUEST_DT", System.Data.SqlDbType.DateTime).Value = DateTime.Now;
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+
+                        CreateProjectRequestEmail(collection);
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            ModelState.AddModelError("", "Error Try Again...");
+
+            // If we got this far, something failed, redisplay form
+            return View();
+        }
+
+        /// <summary>
+        /// CreateProjectRequestEmail sends to the Modeling Team and Development Services Group that a new POC request has been submitted.
+        /// </summary>
+        /// <param name="FormCollection collection">A form's collection of fields.</param>
+        protected void CreateProjectRequestEmail(FormCollection collection)
+        {
+            string[] recipientList = { ConfigurationManager.AppSettings["ProjectRequestNotifyList"].ToString() };
+            string senderEmail = ConfigurationManager.AppSettings["returnEmailAddress"].ToString();
+            string subject = "PIPES Portal -> A New Project Request has been submitted!";
+            string body = "A new Project Request with the name: <br /><br />" +
+            "Name :" + collection["ProjectName"].ToString() + "<br /><br />" +
+            "ParcelNumber:" + collection["ParcelNumber"].ToString() + "<br /><br />" +
+            "Please inspect and take appropriate action - Thank You";
+         
+            EMail emailToSend = new EMail();
+            if (!emailToSend.SendEMail(subject,
+             body,
+             null,                  // To
+             null,                  // CC
+             recipientList,    // BCC
+             senderEmail))          // From
+            {
+                ViewBag.ErrorMsg = "ERROR: EMAIL WAS NOT SENT. Verify email addresses.";
+                ViewBag.RedirectToProjectRecord = false;
+                Redirect("~/Views/Shared/Error.cshtml");
+            }
+        }
+
+
+        // GET: POCREQUEST/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: POCREQUEST/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: POCREQUEST/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: POCREQUEST/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public static async Task<Version> GetVersion(string url, string hostHeader)
+        {
+            var client = new HttpClient();
+            if (!string.IsNullOrEmpty(hostHeader))
+            {
+                client.DefaultRequestHeaders.Host = hostHeader;
+            }
+            var version = await client.GetStringAsync(url);
+            var output = JsonConvert.DeserializeObject<Version>(version);
+            client.Dispose();
+            return output;
+        }
+
+    }
+}

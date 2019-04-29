@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using PORTAL.Models;
+
+namespace PORTAL.Controllers
+{
+    public class COMPANIESController : Controller
+    {
+        private PORTALEntities db = new PORTALEntities();
+
+        [Authorize(Roles = "PortalAdmin")]
+        // GET: COMPANIES
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "PortalAdmin")]
+        /// <summary>
+        /// Index_Read is called by a Kendo UI Grid to read the rows.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public ActionResult Index_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            List<sp_GetAllCompanies_Result> pocr = db.sp_GetAllCompanies().ToList();
+            DataSourceResult result = (pocr).ToDataSourceResult(request);
+            return Json(result);
+        }
+
+
+
+        // GET: COMPANIES/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            PartnerCompanyViewModel pcvm = GetCompany(id);
+
+            if (pcvm == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pcvm);
+        }
+
+        
+        [Authorize(Roles = "PortalAdmin,PartnerAdmin")]
+        // GET: COMPANIES/Edit/5
+        public ActionResult Edit(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            PartnerCompanyViewModel pcvm = GetCompany(id);
+
+            if (pcvm == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.COMPANYTYPEID = new SelectList(db.PDBLOOKUP.Where(x => x.FIELDTYPE == "COMPANYTYPE"), "PDBLOOKUPID", "DESCRIPTION", pcvm.COMPANYTYPEID);
+            return View(pcvm);
+        }
+
+        /// <summary>
+        /// GetCompany returns a Company record into a Partner Company View Model
+        /// </summary>
+        /// <param name="id">the Id of the Company</param>
+        /// <returns>A PartnerCompanyViewModel for a Company</returns>
+        private static PartnerCompanyViewModel GetCompany(long? id)
+        {
+            DataTable table1 = new DataTable();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection(connectionString);
+            connection.Open();
+
+            System.Data.SqlClient.SqlCommand command = new System.Data.SqlClient.SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "sp_GetCompany";
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add("@CompanyId", System.Data.SqlDbType.BigInt).Value = id;
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            if (dataSet.Tables.Count > 0)
+                table1 = dataSet.Tables[0];
+
+            PartnerCompanyViewModel pcvm = new PartnerCompanyViewModel();
+
+            foreach (DataRow r in table1.Rows)
+            {
+                pcvm = new PartnerCompanyViewModel();
+                pcvm.COMPANYID = Convert.ToInt32(r[0]);
+                pcvm.COMPANYNAME = r[1].ToString();
+                pcvm.COMPANYTYPEID = Convert.ToInt32(r[2]);
+                pcvm.ADDRESS = r[3].ToString();
+                pcvm.ADDRESS2 = r[4].ToString();
+                pcvm.CITY = r[5].ToString();
+                pcvm.STATE = r[6].ToString();
+                if (r[7] != System.DBNull.Value) pcvm.ZIP = Convert.ToInt32(r[7]);
+                if (r[8] != System.DBNull.Value) pcvm.ZIP2 = Convert.ToInt32(r[8]);
+                pcvm.TELEPHONE = r[9].ToString();
+                pcvm.EXTENSION = r[10].ToString();
+                pcvm.FAX = r[11].ToString();
+                pcvm.EMAIL = r[12].ToString();
+                pcvm.IS_ACTIVE = Convert.ToBoolean(r[13]);
+                pcvm.ADDED_BY = r[14].ToString();
+                pcvm.ADDED_DT = Convert.ToDateTime(r[15]);
+                pcvm.UPDATED_BY = r[16].ToString();
+                pcvm.UPDATED_DT = Convert.ToDateTime(r[17]);
+                pcvm.CONTACTNAME = r[18].ToString();
+                if (r[19] != System.DBNull.Value) pcvm.IS_BPPORTALADMIN = Convert.ToBoolean(r[19]);
+            }
+            connection.Close();
+            return pcvm;
+        }
+
+        [Authorize(Roles = "PortalAdmin,PartnerAdmin")]
+        // POST: COMPANIES/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "COMPANYID,COMPANYNAME,COMPANYTYPEID,ADDRESS,ADDRESS2,CITY,STATE,ZIP,ZIP2,TELEPHONE,EXTENSION,FAX,EMAIL,IS_ACTIVE,ADDED_BY,ADDED_DT,UPDATED_BY,UPDATED_DT,CONTACTNAME,IS_BPPORTALADMIN")] PartnerCompanyViewModel pcvm)
+        {
+            if (ModelState.IsValid)
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_UpdCompany", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.BigInt).Value = pcvm.COMPANYID;
+                        cmd.Parameters.Add("@CompanyName", System.Data.SqlDbType.VarChar).Value = pcvm.COMPANYNAME;
+                        cmd.Parameters.Add("@CompanyTypeId", System.Data.SqlDbType.BigInt).Value = pcvm.COMPANYTYPEID;
+                        cmd.Parameters.Add("@Address", System.Data.SqlDbType.VarChar).Value = pcvm.ADDRESS;
+                        cmd.Parameters.Add("@Address2", System.Data.SqlDbType.VarChar).Value = pcvm.ADDRESS2;
+                        cmd.Parameters.Add("@City", System.Data.SqlDbType.VarChar).Value = pcvm.CITY;
+                        cmd.Parameters.Add("@State", System.Data.SqlDbType.Char).Value = pcvm.STATE;
+                        cmd.Parameters.Add("@Zip", System.Data.SqlDbType.BigInt).Value = pcvm.ZIP;
+                        cmd.Parameters.Add("@Zip2", System.Data.SqlDbType.BigInt).Value = pcvm.ZIP2;
+                        cmd.Parameters.Add("@Telephone", System.Data.SqlDbType.VarChar).Value = pcvm.TELEPHONE;
+                        cmd.Parameters.Add("@Extension", System.Data.SqlDbType.VarChar).Value = pcvm.EXTENSION;
+                        cmd.Parameters.Add("@Fax", System.Data.SqlDbType.VarChar).Value = pcvm.FAX;
+                        cmd.Parameters.Add("@EMAIL", System.Data.SqlDbType.VarChar).Value = pcvm.EMAIL;
+                        cmd.Parameters.Add("@IS_ACTIVE", System.Data.SqlDbType.Bit).Value = pcvm.IS_ACTIVE;
+                        cmd.Parameters.Add("@UPDATED_BY", System.Data.SqlDbType.VarChar).Value = pcvm.UPDATED_BY;
+                        cmd.Parameters.Add("@UPDATED_DT", System.Data.SqlDbType.VarChar).Value = DateTime.Now;
+                        cmd.Parameters.Add("@CONTACTNAME", System.Data.SqlDbType.VarChar).Value = pcvm.CONTACTNAME;
+                        cmd.Parameters.Add("@IS_BPPORTALADMIN", System.Data.SqlDbType.Bit).Value = pcvm.IS_BPPORTALADMIN;
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            ModelState.AddModelError("", "Error Try Again...");
+
+            // If we got this far, something failed, redisplay form
+            ViewBag.COMPANYTYPEID = new SelectList(db.PDBLOOKUP.Where(x => x.FIELDTYPE == "COMPANYTYPE"), "PDBLOOKUPID", "DESCRIPTION", pcvm.COMPANYTYPEID);
+            return View(pcvm);
+        }
+
+        
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

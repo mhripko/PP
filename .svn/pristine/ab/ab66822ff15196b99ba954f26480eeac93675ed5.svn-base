@@ -1,0 +1,129 @@
+﻿@model PORTAL.Models.PartnerCompanyViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.COMPANYNAME)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.COMPANYNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMPANYNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZIP2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZIP2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TELEPHONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TELEPHONE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTENSION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXTENSION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FAX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FAX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_ACTIVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_ACTIVE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTACTNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTACTNAME)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.LOOKUP.FIELDTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOOKUP.FIELDTYPE)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Cancel", "Index", "HOME", routeValues: null, htmlAttributes: new { @class = "btn btn-default actionButton actionButtonCancel" })
+</p>

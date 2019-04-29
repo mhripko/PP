@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace PORTAL.Models
+{
+    /// <summary>
+    /// RegisterViewModel is called to help the Register page visualization.
+    /// </summary>
+    public class POCRequestViewModel
+    {
+        [Required]
+        [StringLength(1000, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Description")]
+        public string PROJECTDESC { get; set; }
+
+        [Required]
+        [Display(Name = "Parcel Number")]
+        public string ParcelNumber { get; set; }
+
+        [Required]
+        [Display(Name = "ERU")]
+        public double ERU { get; set; }
+
+        [Required]
+        [Display(Name = "QAVG")]
+        public double QAVG { get; set; }
+        
+
+    }
+
+    public class ProjectRequestViewModel
+    {
+        [Required]
+        [StringLength(128, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Name")]
+        public string ProjectName { get; set; }
+
+        [Required]
+        [Display(Name = "Parcel Number")]
+        public string ParcelNumber { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "ACCELA")]
+        public string ACCELA { get; set; }
+
+        [Required]
+        [StringLength(128, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "NS Cross Streets")]
+        public string NSCROSSSTREETS { get; set; }
+
+        [Required]
+        [StringLength(128, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "EW Cross Streets")]
+        public string EWCROSSSTREETS { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Developer")]
+        public string DEVELOPER { get; set; }
+
+        [Required]
+        [Display(Name = "Dev Proj Number")]
+        public double DEVELOPERPROJECTNUMBER { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Engineering Firm")]
+        public string ENGINEERINGFIRM { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Contractor")]
+        public string CONTRACTOR { get; set; }
+    }
+
+}

@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNet.Identity
+@if (User.Identity.IsAuthenticated && (User.Identity.GetUserName().ToLower() == "ppadmin@lvp.com".ToLower() || User.Identity.GetUserName().ToLower() == "bpadmin@lvp.com".ToLower() || User.Identity.GetUserName().ToLower() == "bpuser@lvp.com".ToLower()))
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+    @Html.AntiForgeryToken()
+    <h2>Business Partner User Tasks</h2>
+    <ul>
+        <li>@Html.ActionLink("1a. Submit Point Of Connection (POC) Request", "Create", "POCREQUEST", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("1b. New Project Request", "Create", "CREATENEWPROJECT", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("1c. Plan Review Request", "Create", "PLANREVIEWREQUEST", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("1d. Inspection Request", "Create", "INSPECTIONREQ", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("2.  View Status of Requests", "Index", "POCREQUEST", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("3.  View Company Profile", "Details", "Companies", routeValues: new { id = 138 }, htmlAttributes: new { CompanyId = "138" })</li>
+        <li>@Html.ActionLink("4.  Change Password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { CompanyId = "138" })</li>
+    </ul>
+    }
+}

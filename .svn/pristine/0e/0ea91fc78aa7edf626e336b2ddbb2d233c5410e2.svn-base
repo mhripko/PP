@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using PORTAL.Models;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using System.Net.Http;
+
+namespace PORTAL.Controllers
+{
+    public class HomeController : Controller
+    {
+        //PIPESEntities db = new PIPESEntities();
+        PORTALEntities db = new PORTALEntities();
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult TermsOfUse()
+        {
+            ViewBag.Message = "Terms Of Use.";
+
+            return View();
+        }
+
+        public ActionResult Dashboard(long? id = 0)
+        {
+            if ((long)id == 0)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            ViewData["CID"] = id;
+
+            return View();
+        }
+
+        //public ActionResult MyProjects()
+        //{
+        //    //ViewBag.Message = "Terms Of Use.";
+
+        //    //DataTable table1 = new DataTable();
+        //    //string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        //    //System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection(connectionString);
+        //    //connection.Open();
+
+        //    //System.Data.SqlClient.SqlCommand command = new System.Data.SqlClient.SqlCommand();
+        //    //command.Connection = connection;
+        //    //command.CommandText = "PIPESLINK.PIPES2D.dbo.sp_Portal_getProjLastPlanReviewSubmittalDetails";
+        //    //command.CommandType = System.Data.CommandType.StoredProcedure;
+        //    //command.Parameters.Add("@ProjID", System.Data.SqlDbType.BigInt).Value = 30297;
+
+        //    //SqlDataAdapter adapter = new SqlDataAdapter(command);
+        //    //DataSet dataSet = new DataSet();
+        //    ////sp_getProjLastPlanReviewSubmittalDetails_Result lprsd2 = new sp_getProjLastPlanReviewSubmittalDetails_Result();
+        //    //adapter.Fill(dataSet);
+        //    //if (dataSet.Tables.Count > 0)
+        //    //{
+        //    //    table1 = dataSet.Tables[0];
+        //    //    //sp_getProjLastPlanReviewSubmittalDetails_Result lprsd2 = dataSet.Tables[0];
+        //    //}
+
+        //    ////sp_getProjLastPlanReviewSubmittalDetails_Result lprsd = new sp_getProjLastPlanReviewSubmittalDetails_Result()
+        //    ////{
+        //    ////    PROJECTID = (long) table1.Rows[0][0]
+        //    ////};
+
+        //    ////Results of table1 will show returned row (or rows).
+
+        //    //connection.Close();
+
+
+        //    //List<sp_getProjLastPlanReviewSubmittalDetails_Result> lprsd = db.sp_getProjLastPlanReviewSubmittalDetails(30297).ToList();
+
+        //    //HttpClient client = new HttpClient();
+        //    //client.BaseAddress = new Uri("http://localhost:55849/api/plansubmittals/30297");
+        //    //client.DefaultRequestHeaders.Accept.Clear();
+        //    //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+        //    //sp_getProjLastPlanReviewSubmittalDetails_Results lprsd = pedb.sp_getProjLastPlanReviewSubmittalDetails(30384);
+
+        //    //sp_getProjLastPlanReviewSubmittalDetails_Result lprsd = pedb.sp_getProjLastPlanReviewSubmittalDetails(30384).FirstOrDefault();
+
+        //    return View();
+        //}
+
+    }
+}

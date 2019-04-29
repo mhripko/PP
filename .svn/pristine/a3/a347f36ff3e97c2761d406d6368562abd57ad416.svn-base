@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Access Authorization";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div>
+    <p>
+        Clark County Water Reclamation District Development Services Division 5857 East Flamingo Rd. Las Vegas NV 89119
+    </p>
+    <p>
+        BE SURE TO PRINT A HARDCOPY OF THIS FORM ON YOUR COMPANY LETTERHEAD!  WE MUST HAVE THE HARDCOPY/PAPER VERSION WITH YOUR INFORMATION ON IT.  THIS FORM DOES NOT SAVE ANY DATA - IT IS HERE MERELY AS A CONVENIENCE SO YOU CAN PRINT A COPY OF THIS INFORMATION WITH YOUR NAMES AND SIGNATURE ON YOUR COMPANY LETTERHEAD.
+    </p>
+    <p>
+        To Whom It May Concern:
+    </p>
+    <p>
+        This letter is to confirm that I have read and agree to the “Terms of Use” for the Clark County Water Reclamation District (District) PIPES Plan Review Request system on the District’s website. I understand that our appointed Administrator is responsible for controlling access to that portion of the District’s website from within this firm and for limiting access to only persons working directly for this firm.
+    </p>
+    <p>
+        Based upon this understanding, I appoint the following person as the Administrator of our firm’s PIPES system account:
+    </p>
+    <p>
+        <br />
+        Administrator’s Name: <input />
+        <br />
+    </p>
+    <p>
+        <br />
+        Administrator’s Title:  <input />
+        <br />
+    </p>
+    <p>
+        <br />
+        Administrator’s E-Mail Address: <input />
+        <br />
+    </p>
+    <p>
+        <br />
+        Sincerely, <input />
+        <br />
+    </p>
+
+</div>
+}

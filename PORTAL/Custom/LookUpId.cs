@@ -1,0 +1,140 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using System.Collections.Specialized;
+using PORTAL.Models;
+using Kendo.Mvc.UI;
+using Kendo.Mvc.Extensions;
+using PORTAL.Custom;
+
+namespace PORTAL.Custom
+{
+    public class LookUpId:Controller
+    {
+        // having issues with static
+
+        static PIPESPORTALEntities db = new PIPESPORTALEntities();
+
+        //public static List<LOOKUP> ACTIVE = db.LOOKUP.Where(f => f.FIELDTYPE == "ACTIVE" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> AIRI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "AIRI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> APPVERSION = db.LOOKUP.Where(f => f.FIELDTYPE == "APPVERSION" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> ASSETTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "ASSETTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> ATTACHMENTOWNER = db.LOOKUP.Where(f => f.FIELDTYPE == "ATTACHMENTOWNER" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> BACKFILLAREA = db.LOOKUP.Where(f => f.FIELDTYPE == "BACKFILLAREA" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> BACKFILLMAT = db.LOOKUP.Where(f => f.FIELDTYPE == "BACKFILLMAT" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> BALI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "BALI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> BEDMAT = db.LOOKUP.Where(f => f.FIELDTYPE == "BEDMAT" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> BFLI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "BFLI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> BNDI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "BNDI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> BOLI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "BOLI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> BPPI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "BPPI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> CASI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "CASI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> CHECKSHEETACTION = db.LOOKUP.Where(f => f.FIELDTYPE == "CHECKSHEETACTION" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> CHECKSHEETTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "CHECKSHEETTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> COMMDISCINTERNAL = db.LOOKUP.Where(f => f.FIELDTYPE == "COMMDISCINTERNAL" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> COMMDISCOWNER = db.LOOKUP.Where(f => f.FIELDTYPE == "COMMDISCOWNER" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> COMMENTTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "COMMENTTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> COMPANYTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "COMPANYTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> CONTACTOWNER = db.LOOKUP.Where(f => f.FIELDTYPE == "CONTACTOWNER" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> CONTACTTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "CONTACTTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> CUTI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "CUTI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> DENI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "DENI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> EASEMENTS = db.LOOKUP.Where(f => f.FIELDTYPE == "EASEMENTS" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> EII_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "EII_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> EMAILGROUPTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "EMAILGROUPTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> EMAILTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "EMAILTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> EXI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "EXI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> EXISTPIPETYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "EXISTPIPETYPE" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> FIPI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "FIPI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> FMI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "FMI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> FORMRIGHTTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "FORMRIGHTTYPE" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> INSPACTION = db.LOOKUP.Where(f => f.FIELDTYPE == "INSPACTION" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> INSPREQSTATUS = db.LOOKUP.Where(f => f.FIELDTYPE == "INSPREQSTATUS" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> INSPCNCLREASON = db.LOOKUP.Where(f => f.FIELDTYPE == "INSPCNCLREASON" && f.IS_ACTIVE).ToList();
+        public static List<PDBLOOKUP> INSPECTIONASSET = db.PDBLOOKUP.Where(f => f.FIELDTYPE == "INSPECTIONASSET" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> INSPECTIONQUEUE = db.LOOKUP.Where(f => f.FIELDTYPE == "INSPECTIONQUEUE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> INSPECTIONRESULT = db.LOOKUP.Where(f => f.FIELDTYPE == "INSPECTIONRESULT" && f.IS_ACTIVE).ToList();
+        public static List<PDBLOOKUP> INSPECTIONSTATUS = db.PDBLOOKUP.Where(f => f.FIELDTYPE == "INSPECTIONSTATUS" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> INSPECTIONTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "INSPECTIONTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> INSPECTIONATTRIB = db.LOOKUP.Where(f => f.FIELDTYPE == "INSPECTIONATTRIB" && f.IS_ACTIVE).ToList();
+        public static List<PDBLOOKUP> INSPWORKFLOWSTATUS = db.PDBLOOKUP.Where(f => f.FIELDTYPE == "INSPWORKFLOWSTATUS" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PROJINSPSTATUS = db.LOOKUP.Where(f => f.FIELDTYPE == "PROJINSPSTATUS" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> JSI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "JSI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> LATI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "LATI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> MATERIAL = db.LOOKUP.Where(f => f.FIELDTYPE == "MATERIAL" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MATERIALUNIT = db.LOOKUP.Where(f => f.FIELDTYPE == "MATERIALUNIT" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MDRI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "MDRI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHAI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "MHAI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHCI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "MHCI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHCOI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "MHCOI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHCPI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "MHCPI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHPI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "MHPI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHSIZE = db.LOOKUP.Where(f => f.FIELDTYPE == "MHSIZE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHSPECIAL = db.LOOKUP.Where(f => f.FIELDTYPE == "MHSPECIAL" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHSTREAM = db.LOOKUP.Where(f => f.FIELDTYPE == "MHSTREAM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> MHTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "MHTYPE" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> NUMBERS = db.LOOKUP.Where(f => f.FIELDTYPE == "NUMBERS" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> PAI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "PAI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PIPESIZE = db.LOOKUP.Where(f => f.FIELDTYPE == "PIPESIZE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PIPETYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "PIPETYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PIPESPECIAL = db.LOOKUP.Where(f => f.FIELDTYPE == "PIPESPECIAL" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PLANACTION = db.LOOKUP.Where(f => f.FIELDTYPE == "PLANACTION" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PLANMEDIA = db.LOOKUP.Where(f => f.FIELDTYPE == "PLANMEDIA" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PLANQUEUE = db.LOOKUP.Where(f => f.FIELDTYPE == "PLANQUEUE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PLANREVDISP = db.LOOKUP.Where(f => f.FIELDTYPE == "PLANREVDISP" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PLANSUBMITTALSTATUS = db.LOOKUP.Where(f => f.FIELDTYPE == "PLANSUBMITTALSTATUS" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PPEI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "PPEI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PRI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "PRI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PROJECTATTRIB = db.LOOKUP.Where(f => f.FIELDTYPE == "PROJECTATTRIB" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PROJECTCLASS = db.LOOKUP.Where(f => f.FIELDTYPE == "PROJECTCLASS" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PROJECTFINAL = db.LOOKUP.Where(f => f.FIELDTYPE == "PROJECTFINAL" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PROJECTHOLD = db.LOOKUP.Where(f => f.FIELDTYPE == "PROJECTHOLD" && f.IS_ACTIVE).ToList();
+        public static List<PDBLOOKUP> PROJECTSTATUS = db.PDBLOOKUP.Where(f => f.FIELDTYPE == "PROJECTSTATUS" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PROJSTATUSACTION = db.LOOKUP.Where(f => f.FIELDTYPE == "PROJSTATUSACTION" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> PROJECTTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "PROJECTTYPE" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> RCEI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "RCEI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> REPORTRECV = db.LOOKUP.Where(f => f.FIELDTYPE == "REPORTRECV" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> REVIEWITEMCHECKRESULT = db.LOOKUP.Where(f => f.FIELDTYPE == "REVIEWITEMCHECKRESULT" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> SEGMENTTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "SEGMENTTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> SLIRI_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "SLIRI_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> SUBGRMAT = db.LOOKUP.Where(f => f.FIELDTYPE == "SUBGRMAT" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> TRENCHELEV = db.LOOKUP.Where(f => f.FIELDTYPE == "TRENCHELEV" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> VIDEO_ICST_TEMPLATE_NUM = db.LOOKUP.Where(f => f.FIELDTYPE == "VIDEO_ICST_TEMPLATE_NUM" && f.IS_ACTIVE).ToList();
+
+        //public static List<LOOKUP> WORKFLOWTYPE = db.LOOKUP.Where(f => f.FIELDTYPE == "WORKFLOWTYPE" && f.IS_ACTIVE).ToList();
+        //public static List<LOOKUP> WORKSHIFT = db.LOOKUP.Where(f => f.FIELDTYPE == "WORKSHIFT" && f.IS_ACTIVE).ToList();
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}
+
+

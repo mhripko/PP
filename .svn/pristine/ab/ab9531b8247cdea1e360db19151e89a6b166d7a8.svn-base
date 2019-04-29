@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Project Inspection and Plan Evaluation System</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        
+        <h4>Need to register?</h4>
+        <p>Contractors: CALL 702-688-8888 or <a href="mailto://DevPlanningServices@cleanwaterteam.com">email us</a></p>
+        <p>
+            Developers and Engineers: For questions about Plan Reviews, call 702-688-8888.  To register, a company principal must fill out an
+            @Html.ActionLink("Access Authorization Request", "AccessAuthorization", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) on your company letterhead and submit to the
+            main office at 5857 E. Flamingo Rd, Las Vegas, NV 89103
+        </p>
+        <p>
+            View the @Html.ActionLink("Terms Of Use", "TermsOfUse", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        
+        @*@Html.Partial("_PipesPortalAdminTasks")
+        
+        @Html.Partial("_BusinessPartnerAdminTasks")
+        
+        @Html.Partial("_BusinessPartnerUserTasks")*@
+    </div>
+    <div class="col-md-4">
+        <h2>Web Sites</h2>
+        <p><a href="www.cleanwaterteam.com" target="_blank">Clean Water Team</a></p>
+        <p><a href="www.cleanwaterteam.com/DevPlanningServices/Documents/RefundApplication.pdf" target="_blank">Refund Application Form</a></p>
+        <p></p>
+        <p><a href="http://www.cleanwaterteam.com" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        @using Microsoft.AspNet.Identity;
+        @using Microsoft.AspNet.Identity.EntityFramework;
+        @using PORTAL.Models;
+        @{
+        if (Request.IsAuthenticated)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            <p>@currentUser.CompanyId</p>
+            <p>@currentUser.FirstName @currentUser.LastName</p>
+            @*<p>@currentUser.ContactId</p>*@
+
+    }
+        }
+
+
+    </div>
+</div>

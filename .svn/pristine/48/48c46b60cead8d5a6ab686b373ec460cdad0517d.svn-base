@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNet.Identity
+@if (User.Identity.IsAuthenticated && (User.Identity.GetUserName().ToLower() == "ppadmin@lvp.com".ToLower() || User.Identity.GetUserName().ToLower() == "bpadmin@lvp.com".ToLower()) )
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2>Business Partner Admin Tasks</h2>
+        <ul>
+            <li>@Html.ActionLink("1. Add or Remove Accounts in Company Profile", "Index", "Account", routeValues: new { id = 138 }, htmlAttributes: new { CompanyId = "138" })</li>
+            <li>@Html.ActionLink("2. Read and Modify Company Profile", "Edit", "Companies", routeValues: new { id = 138 }, htmlAttributes: null)</li>
+        </ul>
+    }
+}

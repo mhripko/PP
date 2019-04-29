@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PORTALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="MustChangePW" Type="bit" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ContactId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="COMPANIES">
+    <Key>
+      <PropertyRef Name="COMPANYID" />
+    </Key>
+    <Property Name="COMPANYID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COMPANYNAME" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="COMPANYTYPEID" Type="bigint" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="100" />
+    <Property Name="ADDRESS2" Type="varchar" MaxLength="100" />
+    <Property Name="CITY" Type="varchar" MaxLength="64" />
+    <Property Name="STATE" Type="char" MaxLength="2" />
+    <Property Name="ZIP" Type="bigint" />
+    <Property Name="ZIP2" Type="bigint" />
+    <Property Name="TELEPHONE" Type="varchar" MaxLength="14" />
+    <Property Name="EXTENSION" Type="varchar" MaxLength="8" />
+    <Property Name="FAX" Type="varchar" MaxLength="14" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CONTACTNAME" Type="varchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="CONTACTS">
+    <Key>
+      <PropertyRef Name="CONTACTID" />
+    </Key>
+    <Property Name="CONTACTID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CONTACTTYPEID" Type="bigint" Nullable="false" />
+    <Property Name="INTERNALUSERNAME" Type="varchar" MaxLength="16" />
+    <Property Name="CONTACTNAME" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="CONTACTPHONE" Type="varchar" MaxLength="14" />
+    <Property Name="EXTENSION" Type="varchar" MaxLength="8" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="64" />
+    <Property Name="COMPANYID" Type="bigint" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="IS_PORTAL_USER" Type="bit" Nullable="false" />
+    <Property Name="PASSWORDHASH" Type="nvarchar(max)" />
+    <Property Name="IS_BPADMIN" Type="bit" Nullable="false" />
+    <Property Name="IS_PPADMIN" Type="bit" />
+  </EntityType>
+  <EntityType Name="CREATENEWPROJECTREQUEST">
+    <Key>
+      <PropertyRef Name="CREATENEWPROJECTID" />
+    </Key>
+    <Property Name="CREATENEWPROJECTID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROJECTNAME" Type="varchar" MaxLength="128" />
+    <Property Name="ParcelNumber" Type="nvarchar" MaxLength="14" />
+    <Property Name="ACCELA" Type="nvarchar" MaxLength="50" />
+    <Property Name="NSCROSSSTREETS" Type="varchar" MaxLength="128" />
+    <Property Name="EWCROSSSTREETS" Type="varchar" MaxLength="128" />
+    <Property Name="DEVELOPER" Type="varchar" MaxLength="50" />
+    <Property Name="DEVELOPERPROJECTNUMBER" Type="bigint" />
+    <Property Name="ENGINEERINGFIRM" Type="varchar" MaxLength="50" />
+    <Property Name="CONTRACTOR" Type="varchar" MaxLength="50" />
+    <Property Name="PDFFILE" Type="varchar" MaxLength="255" />
+    <Property Name="REQUEST_BY" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="REQUEST_DT" Type="datetime" Nullable="false" />
+    <Property Name="STATUS" Type="varchar" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="INSPECTIONREQS">
+    <Key>
+      <PropertyRef Name="INSPECTIONREQID" />
+    </Key>
+    <Property Name="INSPECTIONREQID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REQUESTSTATUSID" Type="bigint" Nullable="false" />
+    <Property Name="PROJECTID" Type="bigint" Nullable="false" />
+    <Property Name="REQUESTDATE" Type="datetime" Nullable="false" />
+    <Property Name="CALLERID" Type="bigint" Nullable="false" />
+    <Property Name="FIELDCONTACTID" Type="bigint" Nullable="false" />
+    <Property Name="FROM_DT" Type="datetime" Nullable="false" />
+    <Property Name="TO_DT" Type="datetime" />
+    <Property Name="WORK_SHIFT" Type="bigint" Nullable="false" />
+    <Property Name="OT_STARTTIME" Type="time" Precision="7" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="ADDED_BY" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="ADDED_DT" Type="datetime" Nullable="false" />
+    <Property Name="UPDATED_BY" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOOKUP">
+    <Key>
+      <PropertyRef Name="LOOKUPID" />
+    </Key>
+    <Property Name="LOOKUPID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIELDTYPE" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PLANREVIEWREQUEST">
+    <Key>
+      <PropertyRef Name="PRREQUESTID" />
+    </Key>
+    <Property Name="PRREQUESTID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROJECTNUMBER" Type="varchar" MaxLength="32" />
+    <Property Name="PROJECTNAME" Type="varchar" MaxLength="128" />
+    <Property Name="PDFFILE" Type="varchar" MaxLength="255" />
+    <Property Name="REQUEST_BY" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="REQUEST_DT" Type="datetime" Nullable="false" />
+    <Property Name="STATUS" Type="varchar" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROJCOMPANIES">
+    <Key>
+      <PropertyRef Name="ProjCompanyID" />
+    </Key>
+    <Property Name="ProjCompanyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="bigint" Nullable="false" />
+    <Property Name="CompanyID" Type="bigint" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROJECTS">
+    <Key>
+      <PropertyRef Name="PROJECTID" />
+    </Key>
+    <Property Name="PROJECTID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IS_VALID" Type="bit" Nullable="false" />
+    <Property Name="PROJYEAR" Type="bigint" />
+    <Property Name="PROJNUMSEQ" Type="bigint" />
+    <Property Name="PROJECTNUMBER" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="PROJECTNAME" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="FKA" Type="varchar" MaxLength="128" />
+    <Property Name="PROJECTSTATUSID" Type="bigint" Nullable="false" />
+    <Property Name="PREV_PROJECTSTATUSID" Type="bigint" />
+    <Property Name="PROJECTTYPEID" Type="bigint" />
+    <Property Name="PROJECTCLASSID" Type="bigint" />
+    <Property Name="PLANSREQUIRED" Type="bit" Nullable="false" />
+    <Property Name="NSCROSSSTREETS" Type="varchar" MaxLength="128" />
+    <Property Name="EWCROSSSTREETS" Type="varchar" MaxLength="128" />
+    <Property Name="COUNTYPERMITREQ" Type="bit" Nullable="false" />
+    <Property Name="COUNTYPERMITAPPROVED" Type="bit" Nullable="false" />
+    <Property Name="ILA" Type="bit" Nullable="false" />
+    <Property Name="JOBSTART" Type="bit" Nullable="false" />
+    <Property Name="JOBSTARTDATE" Type="datetime" />
+    <Property Name="BOND_DT" Type="datetime" />
+    <Property Name="BOND_BY" Type="varchar" MaxLength="16" />
+    <Property Name="ASBUILT_DT" Type="datetime" />
+    <Property Name="RECORD_BY" Type="varchar" MaxLength="16" />
+    <Property Name="FINAL_INSPECTOR" Type="varchar" MaxLength="16" />
+    <Property Name="FINAL_DT" Type="datetime" />
+    <Property Name="BOND_REL_INSPECTOR" Type="varchar" MaxLength="16" />
+    <Property Name="BOND_REL_DT" Type="datetime" />
+    <Property Name="OVERSIZE" Type="bit" Nullable="false" />
+    <Property Name="OVERSIZECOST" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="OVERSIZEBOARDAPPROVALDATE" Type="datetime" />
+    <Property Name="REFUND_NUMBER" Type="varchar" MaxLength="32" />
+    <Property Name="REFUND_DT" Type="datetime" />
+    <Property Name="LIFTSTATIONNUM" Type="varchar" MaxLength="64" />
+    <Property Name="MHADJUST" Type="bit" Nullable="false" />
+    <Property Name="DEVELOPERPROJNUM" Type="varchar" MaxLength="80" />
+    <Property Name="PROCTOR" Type="varchar" MaxLength="80" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="ADDED_BY" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="ADDED_DT" Type="datetime" Nullable="false" />
+    <Property Name="UPDATED_BY" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROJUSER">
+    <Key>
+      <PropertyRef Name="PROJUSERID" />
+    </Key>
+    <Property Name="PROJUSERID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="bigint" Nullable="false" />
+    <Property Name="ContactID" Type="bigint" Nullable="false" />
+    <Property Name="CanReqPlanRev" Type="bit" Nullable="false" />
+    <Property Name="CanReqInsp" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="ROLEID" />
+    </Key>
+    <Property Name="ROLEID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROLE_TYPE" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CALLERID_INSPECTIONREQS_CONTACTS">
+    <End Role="CONTACTS" Type="Self.CONTACTS" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTS">
+        <PropertyRef Name="CONTACTID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="CALLERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANYTYPEID_COMPANIES_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="COMPANIES" Type="Self.COMPANIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="COMPANIES">
+        <PropertyRef Name="COMPANYTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS">
+    <End Role="CONTACTS" Type="Self.CONTACTS" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTS">
+        <PropertyRef Name="CONTACTID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="FIELDCONTACTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTCLASSID_PROJECTS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="0..1" />
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="PROJECTS">
+        <PropertyRef Name="PROJECTCLASSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTID_INSPECTIONREQS_PROJECT">
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECTS">
+        <PropertyRef Name="PROJECTID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="PROJECTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTSTATUSID_PROJECTS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="PROJECTS">
+        <PropertyRef Name="PROJECTSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTTYPEID_PROJECTS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="0..1" />
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="PROJECTS">
+        <PropertyRef Name="PROJECTTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="REQUESTSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="WORK_SHIFT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_DelCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_DelContacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ContactId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_DelInspectionRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InspectionRequestId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_DelLookup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LookupId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_DelPlanReviewRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PlanReviewRequestId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_DelPOCRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="POCRequestId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_GetAllCompanies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllContacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllCreateNewProjectRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllInspectionRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllPlanReviewRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllPOCRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_InsCreateNewProjectRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+    <Parameter Name="ParcelNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="ACCELA" Type="nvarchar" Mode="In" />
+    <Parameter Name="NSCROSSSTREETS" Type="varchar" Mode="In" />
+    <Parameter Name="EWCROSSSTREETS" Type="varchar" Mode="In" />
+    <Parameter Name="DEVELOPER" Type="varchar" Mode="In" />
+    <Parameter Name="DEVELOPERPROJECTNUMBER" Type="bigint" Mode="In" />
+    <Parameter Name="ENGINEERINGFIRM" Type="varchar" Mode="In" />
+    <Parameter Name="CONTRACTOR" Type="varchar" Mode="In" />
+    <Parameter Name="PDFFILE" Type="varchar" Mode="In" />
+    <Parameter Name="REQUEST_BY" Type="varchar" Mode="In" />
+    <Parameter Name="REQUEST_DT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_InsPlanReviewRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+    <Parameter Name="PDFFILE" Type="varchar" Mode="In" />
+    <Parameter Name="REQUEST_BY" Type="varchar" Mode="In" />
+    <Parameter Name="REQUEST_DT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_InsPOCRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectDescription" Type="varchar" Mode="In" />
+    <Parameter Name="ParcelNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="ERU" Type="float" Mode="In" />
+    <Parameter Name="QAVG" Type="float" Mode="In" />
+    <Parameter Name="REQUEST_BY" Type="varchar" Mode="In" />
+    <Parameter Name="REQUEST_DT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_LINK_SYNC_COMPANIES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="COMPANYID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_LINK_SYNC_CONTACT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONTACTID" Type="bigint" Mode="In" />
+  </Function>
+  <EntityContainer Name="PORTALModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTACTS" EntityType="Self.CONTACTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CREATENEWPROJECTREQUEST" EntityType="Self.CREATENEWPROJECTREQUEST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INSPECTIONREQS" EntityType="Self.INSPECTIONREQS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOOKUP" EntityType="Self.LOOKUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLANREVIEWREQUEST" EntityType="Self.PLANREVIEWREQUEST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROJCOMPANIES" EntityType="Self.PROJCOMPANIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROJUSER" EntityType="Self.PROJUSER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CALLERID_INSPECTIONREQS_CONTACTS" Association="Self.FK_CALLERID_INSPECTIONREQS_CONTACTS">
+      <End Role="CONTACTS" EntitySet="CONTACTS" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANYTYPEID_COMPANIES_LOOKUP" Association="Self.FK_COMPANYTYPEID_COMPANIES_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="COMPANIES" EntitySet="COMPANIES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS" Association="Self.FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS">
+      <End Role="CONTACTS" EntitySet="CONTACTS" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTCLASSID_PROJECTS_LOOKUP" Association="Self.FK_PROJECTCLASSID_PROJECTS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTID_INSPECTIONREQS_PROJECT" Association="Self.FK_PROJECTID_INSPECTIONREQS_PROJECT">
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTSTATUSID_PROJECTS_LOOKUP" Association="Self.FK_PROJECTSTATUSID_PROJECTS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTTYPEID_PROJECTS_LOOKUP" Association="Self.FK_PROJECTTYPEID_PROJECTS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP" Association="Self.FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP" Association="Self.FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,54 @@
+﻿@************************************************************************************@
+@************************************************************************************@
+@*****                                                                          *****@
+@*****  FileName: /Views/PRREQUESTS/Index.cshtml                               *****@
+@*****  Copyright: CCWRD - 2018                                                 *****@
+@*****  Author: Mark Hripko                                                     *****@
+@*****                                                                          *****@
+@*****  History: (Developer Initials)   Date    Description                     *****@
+@*****                                                                          *****@
+@************************************************************************************@
+@************************************************************************************@
+
+@model IEnumerable<PORTAL.Models.sp_GetAllPlanReviewRequests_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Plan Review Requests</h2>
+
+
+@*<div class="row">
+    <div id="viewPRREQUESTSGrid"></div>
+</div>*@
+
+
+
+<br />
+@(Html.Kendo().Grid<PORTAL.Models.sp_GetAllPlanReviewRequests_Result>()
+                    .Name("viewPRREQUESTSGrid")
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .ServerOperation(false)
+                        .Read(read => read.Action("Index_Read", "PRREQUEST"))
+                    )
+                    //.Columns(columns =>
+                    //{
+                    //    columns.Bound(c => c.PROJECTDESC).Title("Description");
+                    //    columns.Bound(c => c.ParcelNumber).Title("Parcel Number");
+                    //    columns.Bound(c => c.ERU).Title("ERU");
+                    //    columns.Bound(c => c.QAVG).Title("QAVG");
+                    //    columns.Bound(c => c.REQUEST_BY).Title("Request By");
+                    //    columns.Bound(c => c.REQUEST_DT).Title("Request Date");
+                    //    columns.Bound(c => c.STATUS).Title("Status");
+                    //    columns.Bound(c => c.POC_REQ_TRK_NUM).Title("POC Track Number");
+                    //})
+                    .NoRecords(n => n.Template("NO RECORDS TO DISPLAY."))
+                    .Pageable(pageable => pageable
+                    .Refresh(true)
+                    .PageSizes(new[] { 5, 10, 20 })
+                    .ButtonCount(5))
+)
+
+

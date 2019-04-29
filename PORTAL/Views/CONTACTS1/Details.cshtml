@@ -1,0 +1,114 @@
+﻿@model PORTAL.Models.CONTACTS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CONTACTS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.INTERNALUSERNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INTERNALUSERNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTACTNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTACTNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTACTPHONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTACTPHONE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTENSION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXTENSION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMPANYID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMPANYID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_ACTIVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_ACTIVE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDED_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDED_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDED_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDED_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPDATED_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPDATED_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPDATED_DT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPDATED_DT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOOKUP.FIELDTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOOKUP.FIELDTYPE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CONTACTID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

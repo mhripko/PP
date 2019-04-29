@@ -1,0 +1,1289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{383A636C-91CF-4C70-B768-7C0484929F86}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PORTAL</RootNamespace>
+    <AssemblyName>PORTAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\Kendo.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.3.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.3.1\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Web.Spreadsheet">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Web.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip.Extensions">
+      <HintPath>..\lib\KENDOUIMVC\2018.2.516.545\spreadsheet\binaries\net40\Telerik.Windows.Zip.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\COMPANIESController.cs" />
+    <Compile Include="Controllers\CONTACTS1Controller.cs" />
+    <Compile Include="Controllers\CONTACTSController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PRREQUESTController.cs" />
+    <Compile Include="Controllers\PROJREQUESTController.cs" />
+    <Compile Include="Controllers\POCREQUESTController.cs" />
+    <Compile Include="Controllers\RequestsController.cs" />
+    <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="Custom\201803291734193_InitialCreate.cs" />
+    <Compile Include="Custom\201803291734193_InitialCreate.Designer.cs">
+      <DependentUpon>201803291734193_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\BusinessPartner.cs" />
+    <Compile Include="Custom\Configuration.cs" />
+    <Compile Include="Custom\EMail.cs" />
+    <Compile Include="Custom\IdentityExtensions.cs" />
+    <Compile Include="Custom\JsonNetResult.cs" />
+    <Compile Include="Custom\LookUpId.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ABOUTCONTENT.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ACL.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\AspNetRoles.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ASSETATTRIBS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ATTACHMENTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Calendar.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CERTSOFOCC.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHECKSHEET.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHECKSHEETTEMPLATE.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COMMENTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COMPANIES.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COMPANYPROJS.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTACTLOOKUPS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTACTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CREATENEWPROJECTREQUEST.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CSTINFO.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DISCREPANCIES.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EASEMENTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMAILGROUPS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMAILRECIPIENTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMAILS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ExternalUsers.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\fn_GetProjectInfoFromCorrectionType_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FORMRIGHTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FORMS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOLIDAYS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\INSPATTRIBS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPCHAINOFCUSTODY.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPCHECKSHEET.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPCHECKSHEETATTRIBS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPCHECKSHEETTEMPLATE.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPECTIONREQS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPECTIONS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPECTORS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSPWORKFLOWS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IWFINFO.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Log.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Logins.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LOOKUP.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManagerReportStaticData.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MANHOLES.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PARCELS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PDBLOOKUP.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PIPESModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PIPESModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PIPESModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PIPESModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PIPESModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PIPESPORTALModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PIPESPORTALModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PIPESPORTALModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PIPESPORTALModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PIPESPORTALModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PLANCHAINOFCUSTODY.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PLANREVIEWMETRICS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PLANREVIEWREQUEST.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PLANREVISIONS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PLANSUBMITTALS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PLANTRANSFERWORKFLOW.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\POCREQUEST.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PortalViewModels.cs" />
+    <Compile Include="Models\PRIVINSPOBJS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJCOMPANIES.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJCONTACTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECTATTRIBLEVELS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECTATTRIBS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECTPHASES.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJINSPASSETS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJINSPINFO.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJINSPTEMPLATE.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJMATERIALS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJOOOINSPS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJPOCS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRREQUEST.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RequestViewModels.cs" />
+    <Compile Include="Models\REVASSETS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ROLES.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rpt_buildchecksheet_sp_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rpt_buildinspchecksheet_sp_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SEGMENTS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spCompanyLookup_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spForPortal_GetAllCompanies_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spForPortal_GetMyPOCs_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spForPortal_GetMyProjectsByContact_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spForPortal_GetMyProjects_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spForPortal_GetProjectPlans_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCompanies_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllContactsForSearch_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllContacts_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllInspectionRequests_DONOTUSE_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllPOCRequests_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllProjects_DONOTUSE_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllRoles_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetCompany_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetContact_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetMyProjectsX_DONOTUSE_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetMyProjects_DONOTUSE_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetProjectPlans_DONOTUSE_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertContact_Result.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_checkIfSubAssetOOOInspExists_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_displayAdverseComments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_displayProjInspWorkflow_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_forEditProjInspWorkflow_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAboutContentVersions_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAboutContentWithVersion_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getActiveInspWorkflow_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getActivePlanReviewChecksheet_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllContacts_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllForms_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllInspCounts_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllMHForProj_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllPlanCounts_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllRoles_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllSegments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAPNPerProject_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAssetInspWorkflow_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAssets_rpt_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCalendarAllInspCount_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCalendarAllProjectCount_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCalendarAllProject_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCalendarInspForInspector_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCapacityMetricsForReport_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCapacityMetricsFromAI_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCapacityMetrics_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCheckSheetComments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCheckSheetData_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getContactLookUpInfo_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCorrections_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getCSTINFOEntry_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getDistinctProjInsp_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmailGroupRecipients_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmailGroupsForAllProjects_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmailGroupsForProject_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmailReceiptsForProj_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmailSentInfo_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmailsForInspReceipts_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmailsForPlansPickup_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getInspChainOfCustody_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getInspChecksheetComments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getInspChecksheetReqComments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getInspDashboardMetrics_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetInspectionMetrics_rpt_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getInspProjects_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getInspReqCommentsForInspector_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLastCheckSheetData2_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLastCheckSheetData_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLastInspChecksheetComment_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLastInspCheckSheetData_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLastInspForProjByType_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLastProjInspection_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLastProjPlanSubmittalActivity_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getLookUpEntriesForInspByAsset_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getManholeAbandonmentInsp_rpt_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getMHForProj_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getMHInspWorkflow_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getMHsForPIPE_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getMyPlanCounts_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getMyPlans_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getNextProjInspToReq2_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getNextProjInspToReqBasedOnMHs_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getNextProjInspToReq_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPIOForProj_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPipeAbandonmentInsp_rpt_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPIPEInspWorkflow_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPlanOverviewDetails_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPotentialOOOInspAssets_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPotentialOOOInsps_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPotentialPIAs_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjAssetOOOInspAvail_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjCertsOfOcc_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectApprovedPlans_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectAttachments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectContacts_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectInspectionsOverview_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectPlanRevisions_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectPlansChainOfCustody_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectPlanSubmittals_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectsBySearch_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectsForInspector_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjectsWithContacts_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjExternalInspActivityByITID_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjExternalInspActivity_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjHoldComments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspActivity_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspAssets_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspByDate_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspByStatus_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspByTypeAndDisp_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspByType_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspComments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspDetails_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspDiscrepancies_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspections_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspForInspector2_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspForInspector_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspListByAssetType_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspReqComments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspReqDetails_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspReqInspections_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspReqsByStatus_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspReqs_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspsBasedOnDiscrepancy_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspToRequest_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspWorkflowHoldPoints_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspWorkflowHoldPoints_WIP_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjInspWorkflow_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjLastPlanReviewSubmittalDetails_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjMHInspActivityByITID_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjMHInspActivity_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjMHsAndPOCsForPIOCreation_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjMHsFromGIS_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjMHsFromPIA_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjOOOInspections_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjPIPEInspActivityByITID_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjPIPEInspActivity_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjPIPEsFromGIS_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjPIPEsFromPIA_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getProjUniqueInspections_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetReviewDetailsForMonth_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getReviewersByDate_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetReviewsByEngMonthly_rptp_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getRoleFormRights_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getSegmentsForLD_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getSegments_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getTotalMetrics_rptp_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_InspectionMetricsRptTotals_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_InspectionMetricsRpt_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_LastSubmittalDetails_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ManagerInspections_rpt_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_NextProjInspToReqDisplay_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_NextProjInspToReqDisplay_V1_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PeekAtNextProjInspToReqBasedOnMH_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PendingPlanReviews_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PlanReviewActivity_rptp_ORIG_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PlanReviewActivity_rptp_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PlanReviewTimeReportFirst_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PlanReviewTimeReportMylar_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PlanReviewTimeReportRevision_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PlanReviewTimeReportSubsequent_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ProjMHInspActivitySpreadsheet_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ProjPIPEInspActivitySpreadsheet_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ReturnInactiveMH_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_TotalInspections_rpt_GTBackup_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_TotalInspections_rpt_Result.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SSGRAVITYMAIN.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SSJOBSTARTSLINES.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SSJOBSTARTSPOINT.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SSMANHOLE.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSCONST.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SystemUsers.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UPLOADEDDOCS.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USERPOC.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USERPROJS.cs">
+      <DependentUpon>PIPESPORTALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAboutItems_ACTIVE.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAboutItems_ALL.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwACLInfo.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwApplicationVersions_ACTIVE.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwApplicationVersions_ALL.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwCompanyInfo.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwFORMRIGHTSInfo.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwSegmentInfo.cs">
+      <DependentUpon>PIPESModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\PIPESModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PIPESModel.edmx</DependentUpon>
+      <LastGenOutput>PIPESModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PIPESModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PIPESModel.edmx</DependentUpon>
+      <LastGenOutput>PIPESModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PIPESPORTALModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PIPESPORTALModel.edmx</DependentUpon>
+      <LastGenOutput>PIPESPORTALModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PIPESPORTALModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PIPESPORTALModel.edmx</DependentUpon>
+      <LastGenOutput>PIPESPORTALModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\PIPESModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PIPESModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PIPESModel.edmx.diagram">
+      <DependentUpon>PIPESModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\PIPESPORTALModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PIPESPORTALModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PIPESPORTALModel.edmx.diagram">
+      <DependentUpon>PIPESPORTALModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register_orig.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Requests\Index.cshtml" />
+    <Content Include="Views\Home\TermsOfUse.cshtml" />
+    <Content Include="Views\Home\_BusinessPartnerAdminTasks.cshtml" />
+    <Content Include="Views\Home\_BusinessPartnerUserTasks.cshtml" />
+    <Content Include="Views\Home\_PartialTasks.cshtml" />
+    <Content Include="Views\Home\_PipesPortalAdminTasks.cshtml" />
+    <Content Include="Views\Shared\_UserTasks.cshtml" />
+    <Content Include="Views\Shared\_BPAdminTasks.cshtml" />
+    <Content Include="Views\Shared\_PPAdminTasks.cshtml" />
+    <Content Include="Views\POCREQUEST\Create.cshtml" />
+    <Content Include="Views\POCREQUEST\Index.cshtml" />
+    <Content Include="Views\PROJREQUEST\Create.cshtml" />
+    <Content Include="Views\PROJREQUEST\Delete.cshtml" />
+    <Content Include="Views\PROJREQUEST\Index.cshtml" />
+    <Content Include="Views\Account\AccessAuthorization.cshtml" />
+    <Content Include="Views\Account\AccessAuthorizationForm.cshtml" />
+    <Content Include="Views\Account\UserRoles.cshtml" />
+    <Content Include="Views\PRREQUEST\Create.cshtml" />
+    <Content Include="Views\PRREQUEST\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\COMPANIES\Details.cshtml" />
+    <Content Include="Views\COMPANIES\Edit.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\RolesAdmin\Create.cshtml" />
+    <Content Include="Views\RolesAdmin\Delete.cshtml" />
+    <Content Include="Views\RolesAdmin\Details.cshtml" />
+    <Content Include="Views\RolesAdmin\Edit.cshtml" />
+    <Content Include="Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\Create.cshtml" />
+    <Content Include="Views\UsersAdmin\Delete.cshtml" />
+    <Content Include="Views\UsersAdmin\Details.cshtml" />
+    <Content Include="Views\UsersAdmin\Edit.cshtml" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\COMPANIES\Index.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\PROJREQUEST\MyProjects.cshtml" />
+    <Content Include="Views\PRREQUEST\ProjectPlans.cshtml" />
+    <Content Include="Views\INSPREQUEST\Create.cshtml" />
+    <Content Include="Views\INSPREQUEST\Delete.cshtml" />
+    <Content Include="Views\INSPREQUEST\Details.cshtml" />
+    <Content Include="Views\INSPREQUEST\Edit.cshtml" />
+    <Content Include="Views\INSPREQUEST\Index.cshtml" />
+    <Content Include="Views\INSPREQUEST\ProjectInsps.cshtml" />
+    <Content Include="Views\CONTACTS\Index.cshtml" />
+    <Content Include="Views\CONTACTS1\Create.cshtml" />
+    <Content Include="Views\CONTACTS1\Delete.cshtml" />
+    <Content Include="Views\CONTACTS1\Details.cshtml" />
+    <Content Include="Views\CONTACTS1\Edit.cshtml" />
+    <Content Include="Views\CONTACTS1\Index.cshtml" />
+    <Content Include="Views\CONTACTS\Create.cshtml" />
+    <Content Include="Views\CONTACTS\Edit.cshtml" />
+    <Content Include="Views\POCREQUEST\MyPOCs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Custom\201803291734193_InitialCreate.resx">
+      <DependentUpon>201803291734193_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4734</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4734/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties UseCdnSupport="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

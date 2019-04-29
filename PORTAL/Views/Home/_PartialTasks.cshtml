@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+    @Html.AntiForgeryToken()
+
+<ul>
+    <li>@Html.ActionLink("Admin", "Index", "Account")</li>
+    <li>@Html.ActionLink("Contacts", "Index", "CONTACT", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink("POC Request", "Create", "POCREQUEST", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink("POC Request Status View", "Index", "POCREQUEST", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink("Plan Review Request", "Create", "PLANREVIEWREQUEST", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink("Plan Review Request Status", "Index", "PLANREVIEWREQUEST", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink("Projects List View", "Index", "PROJECTS", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
+
+    }
+}
+else
+{
+    <ul>
+        <li>No Tasks.</li>
+    </ul>
+}

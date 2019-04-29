@@ -1,0 +1,690 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PORTALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MustChangePW" Type="Boolean" Nullable="false" />
+    <Property Name="CompanyId" Type="Int64" Nullable="false" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactId" Type="Int64" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="COMPANIES">
+    <Key>
+      <PropertyRef Name="COMPANYID" />
+    </Key>
+    <Property Name="COMPANYID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COMPANYNAME" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COMPANYTYPEID" Type="Int64" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CITY" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="STATE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="ZIP" Type="Int64" />
+    <Property Name="ZIP2" Type="Int64" />
+    <Property Name="TELEPHONE" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="EXTENSION" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="FAX" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CONTACTNAME" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LOOKUP" Relationship="Self.FK_COMPANYTYPEID_COMPANIES_LOOKUP" FromRole="COMPANIES" ToRole="LOOKUP" />
+  </EntityType>
+  <EntityType Name="CONTACTS">
+    <Key>
+      <PropertyRef Name="CONTACTID" />
+    </Key>
+    <Property Name="CONTACTID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CONTACTTYPEID" Type="Int64" Nullable="false" />
+    <Property Name="INTERNALUSERNAME" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACTNAME" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTACTPHONE" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="EXTENSION" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="COMPANYID" Type="Int64" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="IS_PORTAL_USER" Type="Boolean" Nullable="false" />
+    <Property Name="PASSWORDHASH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IS_BPADMIN" Type="Boolean" Nullable="false" />
+    <Property Name="IS_PPADMIN" Type="Boolean" />
+    <NavigationProperty Name="INSPECTIONREQS" Relationship="Self.FK_CALLERID_INSPECTIONREQS_CONTACTS" FromRole="CONTACTS" ToRole="INSPECTIONREQS" />
+    <NavigationProperty Name="INSPECTIONREQS1" Relationship="Self.FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS" FromRole="CONTACTS" ToRole="INSPECTIONREQS" />
+  </EntityType>
+  <EntityType Name="CREATENEWPROJECTREQUEST">
+    <Key>
+      <PropertyRef Name="CREATENEWPROJECTID" />
+    </Key>
+    <Property Name="CREATENEWPROJECTID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PROJECTNAME" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ParcelNumber" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="ACCELA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NSCROSSSTREETS" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="EWCROSSSTREETS" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="DEVELOPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DEVELOPERPROJECTNUMBER" Type="Int64" />
+    <Property Name="ENGINEERINGFIRM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTRACTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PDFFILE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="REQUEST_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="REQUEST_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="INSPECTIONREQS">
+    <Key>
+      <PropertyRef Name="INSPECTIONREQID" />
+    </Key>
+    <Property Name="INSPECTIONREQID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REQUESTSTATUSID" Type="Int64" Nullable="false" />
+    <Property Name="PROJECTID" Type="Int64" Nullable="false" />
+    <Property Name="REQUESTDATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CALLERID" Type="Int64" Nullable="false" />
+    <Property Name="FIELDCONTACTID" Type="Int64" Nullable="false" />
+    <Property Name="FROM_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TO_DT" Type="DateTime" Precision="3" />
+    <Property Name="WORK_SHIFT" Type="Int64" Nullable="false" />
+    <Property Name="OT_STARTTIME" Type="Time" Precision="7" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="ADDED_BY" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDED_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CONTACTS" Relationship="Self.FK_CALLERID_INSPECTIONREQS_CONTACTS" FromRole="INSPECTIONREQS" ToRole="CONTACTS" />
+    <NavigationProperty Name="CONTACTS1" Relationship="Self.FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS" FromRole="INSPECTIONREQS" ToRole="CONTACTS" />
+    <NavigationProperty Name="PROJECTS" Relationship="Self.FK_PROJECTID_INSPECTIONREQS_PROJECT" FromRole="INSPECTIONREQS" ToRole="PROJECTS" />
+    <NavigationProperty Name="LOOKUP" Relationship="Self.FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP" FromRole="INSPECTIONREQS" ToRole="LOOKUP" />
+    <NavigationProperty Name="LOOKUP1" Relationship="Self.FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP" FromRole="INSPECTIONREQS" ToRole="LOOKUP" />
+  </EntityType>
+  <EntityType Name="LOOKUP">
+    <Key>
+      <PropertyRef Name="LOOKUPID" />
+    </Key>
+    <Property Name="LOOKUPID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIELDTYPE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VALUE" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="COMPANIES" Relationship="Self.FK_COMPANYTYPEID_COMPANIES_LOOKUP" FromRole="LOOKUP" ToRole="COMPANIES" />
+    <NavigationProperty Name="INSPECTIONREQS" Relationship="Self.FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP" FromRole="LOOKUP" ToRole="INSPECTIONREQS" />
+    <NavigationProperty Name="INSPECTIONREQS1" Relationship="Self.FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP" FromRole="LOOKUP" ToRole="INSPECTIONREQS" />
+    <NavigationProperty Name="PROJECTS" Relationship="Self.FK_PROJECTCLASSID_PROJECTS_LOOKUP" FromRole="LOOKUP" ToRole="PROJECTS" />
+    <NavigationProperty Name="PROJECTS1" Relationship="Self.FK_PROJECTSTATUSID_PROJECTS_LOOKUP" FromRole="LOOKUP" ToRole="PROJECTS" />
+    <NavigationProperty Name="PROJECTS2" Relationship="Self.FK_PROJECTTYPEID_PROJECTS_LOOKUP" FromRole="LOOKUP" ToRole="PROJECTS" />
+  </EntityType>
+  <EntityType Name="PLANREVIEWREQUEST">
+    <Key>
+      <PropertyRef Name="PRREQUESTID" />
+    </Key>
+    <Property Name="PRREQUESTID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PROJECTNUMBER" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="PROJECTNAME" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="PDFFILE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="REQUEST_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="REQUEST_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROJCOMPANIES">
+    <Key>
+      <PropertyRef Name="ProjCompanyID" />
+    </Key>
+    <Property Name="ProjCompanyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int64" Nullable="false" />
+    <Property Name="CompanyID" Type="Int64" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROJECTS">
+    <Key>
+      <PropertyRef Name="PROJECTID" />
+    </Key>
+    <Property Name="PROJECTID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IS_VALID" Type="Boolean" Nullable="false" />
+    <Property Name="PROJYEAR" Type="Int64" />
+    <Property Name="PROJNUMSEQ" Type="Int64" />
+    <Property Name="PROJECTNUMBER" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROJECTNAME" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FKA" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="PROJECTSTATUSID" Type="Int64" Nullable="false" />
+    <Property Name="PREV_PROJECTSTATUSID" Type="Int64" />
+    <Property Name="PROJECTTYPEID" Type="Int64" />
+    <Property Name="PROJECTCLASSID" Type="Int64" />
+    <Property Name="PLANSREQUIRED" Type="Boolean" Nullable="false" />
+    <Property Name="NSCROSSSTREETS" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="EWCROSSSTREETS" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="COUNTYPERMITREQ" Type="Boolean" Nullable="false" />
+    <Property Name="COUNTYPERMITAPPROVED" Type="Boolean" Nullable="false" />
+    <Property Name="ILA" Type="Boolean" Nullable="false" />
+    <Property Name="JOBSTART" Type="Boolean" Nullable="false" />
+    <Property Name="JOBSTARTDATE" Type="DateTime" Precision="3" />
+    <Property Name="BOND_DT" Type="DateTime" Precision="3" />
+    <Property Name="BOND_BY" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="ASBUILT_DT" Type="DateTime" Precision="3" />
+    <Property Name="RECORD_BY" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="FINAL_INSPECTOR" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="FINAL_DT" Type="DateTime" Precision="3" />
+    <Property Name="BOND_REL_INSPECTOR" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="BOND_REL_DT" Type="DateTime" Precision="3" />
+    <Property Name="OVERSIZE" Type="Boolean" Nullable="false" />
+    <Property Name="OVERSIZECOST" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OVERSIZEBOARDAPPROVALDATE" Type="DateTime" Precision="3" />
+    <Property Name="REFUND_NUMBER" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="REFUND_DT" Type="DateTime" Precision="3" />
+    <Property Name="LIFTSTATIONNUM" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="MHADJUST" Type="Boolean" Nullable="false" />
+    <Property Name="DEVELOPERPROJNUM" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PROCTOR" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="ADDED_BY" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDED_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="INSPECTIONREQS" Relationship="Self.FK_PROJECTID_INSPECTIONREQS_PROJECT" FromRole="PROJECTS" ToRole="INSPECTIONREQS" />
+    <NavigationProperty Name="LOOKUP" Relationship="Self.FK_PROJECTCLASSID_PROJECTS_LOOKUP" FromRole="PROJECTS" ToRole="LOOKUP" />
+    <NavigationProperty Name="LOOKUP1" Relationship="Self.FK_PROJECTSTATUSID_PROJECTS_LOOKUP" FromRole="PROJECTS" ToRole="LOOKUP" />
+    <NavigationProperty Name="LOOKUP2" Relationship="Self.FK_PROJECTTYPEID_PROJECTS_LOOKUP" FromRole="PROJECTS" ToRole="LOOKUP" />
+  </EntityType>
+  <EntityType Name="PROJUSER">
+    <Key>
+      <PropertyRef Name="PROJUSERID" />
+    </Key>
+    <Property Name="PROJUSERID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int64" Nullable="false" />
+    <Property Name="ContactID" Type="Int64" Nullable="false" />
+    <Property Name="CanReqPlanRev" Type="Boolean" Nullable="false" />
+    <Property Name="CanReqInsp" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="ROLEID" />
+    </Key>
+    <Property Name="ROLEID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROLE_TYPE" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPANYTYPEID_COMPANIES_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="COMPANIES" Type="Self.COMPANIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="COMPANIES">
+        <PropertyRef Name="COMPANYTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CALLERID_INSPECTIONREQS_CONTACTS">
+    <End Role="CONTACTS" Type="Self.CONTACTS" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTS">
+        <PropertyRef Name="CONTACTID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="CALLERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS">
+    <End Role="CONTACTS" Type="Self.CONTACTS" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTS">
+        <PropertyRef Name="CONTACTID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="FIELDCONTACTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTID_INSPECTIONREQS_PROJECT">
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECTS">
+        <PropertyRef Name="PROJECTID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="PROJECTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="REQUESTSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="INSPECTIONREQS" Type="Self.INSPECTIONREQS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="INSPECTIONREQS">
+        <PropertyRef Name="WORK_SHIFT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTCLASSID_PROJECTS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="0..1" />
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="PROJECTS">
+        <PropertyRef Name="PROJECTCLASSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTSTATUSID_PROJECTS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="1" />
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="PROJECTS">
+        <PropertyRef Name="PROJECTSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECTTYPEID_PROJECTS_LOOKUP">
+    <End Role="LOOKUP" Type="Self.LOOKUP" Multiplicity="0..1" />
+    <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP">
+        <PropertyRef Name="LOOKUPID" />
+      </Principal>
+      <Dependent Role="PROJECTS">
+        <PropertyRef Name="PROJECTTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="PORTALEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" />
+    <EntitySet Name="CONTACTS" EntityType="Self.CONTACTS" />
+    <EntitySet Name="CREATENEWPROJECTREQUEST" EntityType="Self.CREATENEWPROJECTREQUEST" />
+    <EntitySet Name="INSPECTIONREQS" EntityType="Self.INSPECTIONREQS" />
+    <EntitySet Name="LOOKUP" EntityType="Self.LOOKUP" />
+    <EntitySet Name="PLANREVIEWREQUEST" EntityType="Self.PLANREVIEWREQUEST" />
+    <EntitySet Name="PROJCOMPANIES" EntityType="Self.PROJCOMPANIES" />
+    <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" />
+    <EntitySet Name="PROJUSER" EntityType="Self.PROJUSER" />
+    <EntitySet Name="ROLES" EntityType="Self.ROLES" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPANYTYPEID_COMPANIES_LOOKUP" Association="Self.FK_COMPANYTYPEID_COMPANIES_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="COMPANIES" EntitySet="COMPANIES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CALLERID_INSPECTIONREQS_CONTACTS" Association="Self.FK_CALLERID_INSPECTIONREQS_CONTACTS">
+      <End Role="CONTACTS" EntitySet="CONTACTS" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS" Association="Self.FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS">
+      <End Role="CONTACTS" EntitySet="CONTACTS" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTID_INSPECTIONREQS_PROJECT" Association="Self.FK_PROJECTID_INSPECTIONREQS_PROJECT">
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP" Association="Self.FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP" Association="Self.FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="INSPECTIONREQS" EntitySet="INSPECTIONREQS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTCLASSID_PROJECTS_LOOKUP" Association="Self.FK_PROJECTCLASSID_PROJECTS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTSTATUSID_PROJECTS_LOOKUP" Association="Self.FK_PROJECTSTATUSID_PROJECTS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECTTYPEID_PROJECTS_LOOKUP" Association="Self.FK_PROJECTTYPEID_PROJECTS_LOOKUP">
+      <End Role="LOOKUP" EntitySet="LOOKUP" />
+      <End Role="PROJECTS" EntitySet="PROJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="sp_DelCompany">
+      <Parameter Name="CompanyId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DelContacts">
+      <Parameter Name="ContactId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DelInspectionRequest">
+      <Parameter Name="InspectionRequestId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DelLookup">
+      <Parameter Name="LookupId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DelPlanReviewRequest">
+      <Parameter Name="PlanReviewRequestId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DelPOCRequest">
+      <Parameter Name="POCRequestId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetAllCompanies" ReturnType="Collection(PORTALModel.sp_GetAllCompanies_Result)" />
+    <FunctionImport Name="sp_GetAllContacts" ReturnType="Collection(PORTALModel.sp_GetAllContacts_Result)" />
+    <FunctionImport Name="sp_GetAllCreateNewProjectRequest" ReturnType="Collection(PORTALModel.sp_GetAllCreateNewProjectRequest_Result)" />
+    <FunctionImport Name="sp_GetAllInspectionRequests" ReturnType="Collection(PORTALModel.sp_GetAllInspectionRequests_Result)" />
+    <FunctionImport Name="sp_GetAllPlanReviewRequests" ReturnType="Collection(PORTALModel.sp_GetAllPlanReviewRequests_Result)" />
+    <FunctionImport Name="sp_GetAllPOCRequests" ReturnType="Collection(PORTALModel.sp_GetAllPOCRequests_Result)" />
+    <FunctionImport Name="sp_GetAllProjects" ReturnType="Collection(PORTALModel.sp_GetAllProjects_Result)" />
+    <FunctionImport Name="sp_GetAllRoles" ReturnType="Collection(PORTALModel.sp_GetAllRoles_Result)" />
+    <FunctionImport Name="sp_InsCreateNewProjectRequest">
+      <Parameter Name="ProjectName" Mode="In" Type="String" />
+      <Parameter Name="ParcelNumber" Mode="In" Type="String" />
+      <Parameter Name="ACCELA" Mode="In" Type="String" />
+      <Parameter Name="NSCROSSSTREETS" Mode="In" Type="String" />
+      <Parameter Name="EWCROSSSTREETS" Mode="In" Type="String" />
+      <Parameter Name="DEVELOPER" Mode="In" Type="String" />
+      <Parameter Name="DEVELOPERPROJECTNUMBER" Mode="In" Type="Int64" />
+      <Parameter Name="ENGINEERINGFIRM" Mode="In" Type="String" />
+      <Parameter Name="CONTRACTOR" Mode="In" Type="String" />
+      <Parameter Name="PDFFILE" Mode="In" Type="String" />
+      <Parameter Name="REQUEST_BY" Mode="In" Type="String" />
+      <Parameter Name="REQUEST_DT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsPlanReviewRequest">
+      <Parameter Name="ProjectNumber" Mode="In" Type="String" />
+      <Parameter Name="ProjectName" Mode="In" Type="String" />
+      <Parameter Name="PDFFILE" Mode="In" Type="String" />
+      <Parameter Name="REQUEST_BY" Mode="In" Type="String" />
+      <Parameter Name="REQUEST_DT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsPOCRequest">
+      <Parameter Name="ProjectDescription" Mode="In" Type="String" />
+      <Parameter Name="ParcelNumber" Mode="In" Type="String" />
+      <Parameter Name="ERU" Mode="In" Type="Double" />
+      <Parameter Name="QAVG" Mode="In" Type="Double" />
+      <Parameter Name="REQUEST_BY" Mode="In" Type="String" />
+      <Parameter Name="REQUEST_DT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LINK_SYNC_COMPANIES" ReturnType="Collection(PORTALModel.sp_LINK_SYNC_COMPANIES_Result)">
+      <Parameter Name="COMPANYID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LINK_SYNC_CONTACT">
+      <Parameter Name="CONTACTID" Mode="In" Type="Int64" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_GetAllCompanies_Result">
+    <Property Type="Int64" Name="COMPANYID" Nullable="false" />
+    <Property Type="String" Name="COMPANYNAME" Nullable="false" MaxLength="64" />
+    <Property Type="Int64" Name="COMPANYTYPEID" Nullable="false" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ADDRESS2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CITY" Nullable="true" MaxLength="64" />
+    <Property Type="String" Name="STATE" Nullable="true" MaxLength="2" />
+    <Property Type="Int64" Name="ZIP" Nullable="true" />
+    <Property Type="Int64" Name="ZIP2" Nullable="true" />
+    <Property Type="String" Name="TELEPHONE" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="EXTENSION" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FAX" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CONTACTNAME" Nullable="true" MaxLength="64" />
+    <Property Type="Boolean" Name="IS_BPPORTALADMIN" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllContacts_Result">
+    <Property Type="Int64" Name="CONTACTID" Nullable="false" />
+    <Property Type="Int64" Name="CONTACTTYPEID" Nullable="false" />
+    <Property Type="String" Name="INTERNALUSERNAME" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="CONTACTNAME" Nullable="false" MaxLength="64" />
+    <Property Type="String" Name="CONTACTPHONE" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="EXTENSION" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="64" />
+    <Property Type="Int64" Name="COMPANYID" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllCreateNewProjectRequest_Result">
+    <Property Type="Int64" Name="CREATENEWPROJECTID" Nullable="false" />
+    <Property Type="String" Name="PROJECTNAME" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ParcelNumber" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="ACCELA" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NSCROSSSTREETS" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="EWCROSSSTREETS" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DEVELOPER" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="DEVELOPERPROJECTNUMBER" Nullable="true" />
+    <Property Type="String" Name="ENGINEERINGFIRM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CONTRACTOR" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PDFFILE" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="REQUEST_BY" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="REQUEST_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllInspectionRequests_Result">
+    <Property Type="Int64" Name="INSPECTIONREQID" Nullable="false" />
+    <Property Type="Int64" Name="REQUESTSTATUSID" Nullable="false" />
+    <Property Type="Int64" Name="PROJECTID" Nullable="false" />
+    <Property Type="DateTime" Name="REQUESTDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="CALLERID" Nullable="false" />
+    <Property Type="Int64" Name="FIELDCONTACTID" Nullable="false" />
+    <Property Type="Int64" Name="COMPANYID" Nullable="false" />
+    <Property Type="DateTime" Name="FROM_DT" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="TO_DT" Nullable="true" Precision="23" />
+    <Property Type="Int64" Name="WORK_SHIFT" Nullable="false" />
+    <Property Type="Time" Name="OT_STARTTIME" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllPlanReviewRequests_Result">
+    <Property Type="Int64" Name="PRREQUESTID" Nullable="false" />
+    <Property Type="String" Name="PROJECTNUMBER" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="PROJECTNAME" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PDFFILE" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="REQUEST_BY" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="REQUEST_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllPOCRequests_Result">
+    <Property Type="Int64" Name="POCREQUESTID" Nullable="false" />
+    <Property Type="Int64" Name="PROJECTID" Nullable="true" />
+    <Property Type="String" Name="PROJECTDESC" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ParcelNumber" Nullable="false" MaxLength="14" />
+    <Property Type="Double" Name="ERU" Nullable="false" />
+    <Property Type="Double" Name="QAVG" Nullable="false" />
+    <Property Type="String" Name="REQUEST_BY" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="REQUEST_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="12" />
+    <Property Type="DateTime" Name="PROCESS_DT" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ISSUE_DT" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EXPIRATION_DT" Nullable="true" Precision="23" />
+    <Property Type="String" Name="POC_REQ_TRK_NUM" Nullable="true" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllProjects_Result">
+    <Property Type="Int64" Name="PROJECTID" Nullable="false" />
+    <Property Type="Boolean" Name="IS_VALID" Nullable="false" />
+    <Property Type="Int64" Name="PROJYEAR" Nullable="true" />
+    <Property Type="Int64" Name="PROJNUMSEQ" Nullable="true" />
+    <Property Type="String" Name="PROJECTNUMBER" Nullable="false" MaxLength="32" />
+    <Property Type="String" Name="PROJECTNAME" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="FKA" Nullable="true" MaxLength="128" />
+    <Property Type="Int64" Name="PROJECTSTATUSID" Nullable="false" />
+    <Property Type="Int64" Name="PREV_PROJECTSTATUSID" Nullable="true" />
+    <Property Type="Int64" Name="PROJECTTYPEID" Nullable="true" />
+    <Property Type="Int64" Name="PROJECTCLASSID" Nullable="true" />
+    <Property Type="Boolean" Name="PLANSREQUIRED" Nullable="false" />
+    <Property Type="String" Name="NSCROSSSTREETS" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="EWCROSSSTREETS" Nullable="true" MaxLength="128" />
+    <Property Type="Boolean" Name="COUNTYPERMITREQ" Nullable="false" />
+    <Property Type="Boolean" Name="COUNTYPERMITAPPROVED" Nullable="false" />
+    <Property Type="Boolean" Name="ILA" Nullable="false" />
+    <Property Type="DateTime" Name="ILA_APPROVAL_DT" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="JOBSTART" Nullable="false" />
+    <Property Type="DateTime" Name="JOBSTARTDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="BOND_DT" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="NA_BOND" Nullable="true" />
+    <Property Type="String" Name="BOND_BY" Nullable="true" MaxLength="16" />
+    <Property Type="DateTime" Name="ASBUILT_DT" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="NA_RECORD" Nullable="true" />
+    <Property Type="String" Name="RECORD_BY" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="FINAL_INSPECTOR" Nullable="true" MaxLength="16" />
+    <Property Type="DateTime" Name="FINAL_DT" Nullable="true" Precision="23" />
+    <Property Type="String" Name="BOND_REL_INSPECTOR" Nullable="true" MaxLength="16" />
+    <Property Type="DateTime" Name="BOND_REL_DT" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="OVERSIZE" Nullable="false" />
+    <Property Type="Decimal" Name="OVERSIZECOST" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="OVERSIZEBOARDAPPROVALDATE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="REFUND_NUMBER" Nullable="true" MaxLength="32" />
+    <Property Type="DateTime" Name="REFUND_DT" Nullable="true" Precision="23" />
+    <Property Type="String" Name="LIFTSTATIONNUM" Nullable="true" MaxLength="64" />
+    <Property Type="Boolean" Name="MHADJUST" Nullable="false" />
+    <Property Type="String" Name="DEVELOPERPROJNUM" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="PROCTOR" Nullable="true" MaxLength="80" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllRoles_Result">
+    <Property Type="Int64" Name="ROLEID" Nullable="false" />
+    <Property Type="String" Name="ROLE_TYPE" Nullable="false" MaxLength="16" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="ADDED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="ADDED_DT" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UPDATED_BY" Nullable="false" MaxLength="16" />
+    <Property Type="DateTime" Name="UPDATED_DT" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LINK_SYNC_COMPANIES_Result">
+    <Property Type="Int64" Name="COMPANYID" Nullable="false" />
+    <Property Type="String" Name="COMPANYNAME" Nullable="false" MaxLength="64" />
+    <Property Type="Int64" Name="COMPANYTYPEID" Nullable="false" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ADDRESS2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CITY" Nullable="true" MaxLength="64" />
+    <Property Type="String" Name="STATE" Nullable="true" MaxLength="2" />
+    <Property Type="Int64" Name="ZIP" Nullable="true" />
+    <Property Type="Int64" Name="ZIP2" Nullable="true" />
+    <Property Type="String" Name="TELEPHONE" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="EXTENSION" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="FAX" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="IS_ACTIVE" Nullable="false" />
+    <Property Type="String" Name="CONTACTNAME" Nullable="true" MaxLength="64" />
+  </ComplexType>
+</Schema>

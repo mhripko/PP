@@ -1,0 +1,148 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using PORTAL.Models;
+
+namespace PORTAL.Controllers
+{
+    public class INSPREQUESTController : Controller
+    {
+        private PORTALEntities db = new PORTALEntities();
+
+        // GET: INSPECTIONREQ
+        public ActionResult Index()
+        {
+            var iNSPECTIONREQS = db.INSPECTIONREQ.Include(i => i.CONTACT).Include(i => i.CONTACT1).Include(i => i.PROJECT).Include(i => i.LOOKUP).Include(i => i.LOOKUP1);
+            return View(iNSPECTIONREQS.ToList());
+        }
+
+        // GET: INSPECTIONREQ/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INSPECTIONREQ iNSPECTIONREQ = db.INSPECTIONREQ.Find(id);
+            if (iNSPECTIONREQ == null)
+            {
+                return HttpNotFound();
+            }
+            return View(iNSPECTIONREQ);
+        }
+
+        // GET: INSPECTIONREQ/Create
+        public ActionResult Create()
+        {
+            ViewBag.CALLERID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME");
+            ViewBag.FIELDCONTACTID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME");
+            ViewBag.PROJECTID = new SelectList(db.PROJECTS, "PROJECTID", "PROJECTNUMBER");
+            ViewBag.REQUESTSTATUSID = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE");
+            ViewBag.WORK_SHIFT = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE");
+            return View();
+        }
+
+        // POST: INSPECTIONREQ/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "INSPECTIONREQID,REQUESTSTATUSID,PROJECTID,REQUESTDATE,CALLERID,FIELDCONTACTID,FROM_DT,TO_DT,WORK_SHIFT,OT_STARTTIME,IS_ACTIVE,ADDED_BY,ADDED_DT,UPDATED_BY,UPDATED_DT")] INSPECTIONREQ iNSPECTIONREQ)
+        {
+            if (ModelState.IsValid)
+            {
+                db.INSPECTIONREQ.Add(iNSPECTIONREQ);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.CALLERID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME", iNSPECTIONREQ.CALLERID);
+            ViewBag.FIELDCONTACTID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME", iNSPECTIONREQ.FIELDCONTACTID);
+            ViewBag.PROJECTID = new SelectList(db.PROJECTS, "PROJECTID", "PROJECTNUMBER", iNSPECTIONREQ.PROJECTID);
+            ViewBag.REQUESTSTATUSID = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE", iNSPECTIONREQ.REQUESTSTATUSID);
+            ViewBag.WORK_SHIFT = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE", iNSPECTIONREQ.WORK_SHIFT);
+            return View(iNSPECTIONREQ);
+        }
+
+        // GET: INSPECTIONREQ/Edit/5
+        public ActionResult Edit(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INSPECTIONREQ iNSPECTIONREQ = db.INSPECTIONREQ.Find(id);
+            if (iNSPECTIONREQ == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CALLERID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME", iNSPECTIONREQ.CALLERID);
+            ViewBag.FIELDCONTACTID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME", iNSPECTIONREQ.FIELDCONTACTID);
+            ViewBag.PROJECTID = new SelectList(db.PROJECTS, "PROJECTID", "PROJECTNUMBER", iNSPECTIONREQ.PROJECTID);
+            ViewBag.REQUESTSTATUSID = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE", iNSPECTIONREQ.REQUESTSTATUSID);
+            ViewBag.WORK_SHIFT = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE", iNSPECTIONREQ.WORK_SHIFT);
+            return View(iNSPECTIONREQ);
+        }
+
+        // POST: INSPECTIONREQ/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "INSPECTIONREQID,REQUESTSTATUSID,PROJECTID,REQUESTDATE,CALLERID,FIELDCONTACTID,FROM_DT,TO_DT,WORK_SHIFT,OT_STARTTIME,IS_ACTIVE,ADDED_BY,ADDED_DT,UPDATED_BY,UPDATED_DT")] INSPECTIONREQ iNSPECTIONREQ)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(iNSPECTIONREQ).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CALLERID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME", iNSPECTIONREQ.CALLERID);
+            ViewBag.FIELDCONTACTID = new SelectList(db.CONTACTS, "CONTACTID", "INTERNALUSERNAME", iNSPECTIONREQ.FIELDCONTACTID);
+            ViewBag.PROJECTID = new SelectList(db.PROJECTS, "PROJECTID", "PROJECTNUMBER", iNSPECTIONREQ.PROJECTID);
+            ViewBag.REQUESTSTATUSID = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE", iNSPECTIONREQ.REQUESTSTATUSID);
+            ViewBag.WORK_SHIFT = new SelectList(db.LOOKUPs, "LOOKUPID", "FIELDTYPE", iNSPECTIONREQ.WORK_SHIFT);
+            return View(iNSPECTIONREQ);
+        }
+
+        // GET: INSPECTIONREQ/Delete/5
+        public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INSPECTIONREQ iNSPECTIONREQ = db.INSPECTIONREQ.Find(id);
+            if (iNSPECTIONREQ == null)
+            {
+                return HttpNotFound();
+            }
+            return View(iNSPECTIONREQ);
+        }
+
+        // POST: INSPECTIONREQ/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(long id)
+        {
+            INSPECTIONREQ iNSPECTIONREQ = db.INSPECTIONREQ.Find(id);
+            db.INSPECTIONREQ.Remove(iNSPECTIONREQ);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

@@ -1,0 +1,148 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using PORTAL.Models;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using System.Net.Http;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
+namespace PORTAL.Controllers
+{
+    public class HomeController : Controller
+    {
+        PIPESPORTALEntities db = new PIPESPORTALEntities();
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult TermsOfUse()
+        {
+            ViewBag.Message = "Terms Of Use.";
+
+            return View();
+        }
+
+        /// <summary>
+        /// Dashboard shows the Dashboard view.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Dashboard()
+        {
+            var currentUser = GetCurrentUser();
+            
+            if ((long)currentUser.CompanyId == 0)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            if ((long)currentUser.ContactId == 0)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
+            // CompanyId
+            ViewData["CID"] = currentUser.CompanyId;
+
+            // ContactId
+            ViewData["CONTACTID"] = currentUser.ContactId;
+
+            //ViewData["UCCP"] = false;
+            // Check whatever to see if User Can Create Project - AOA
+            ViewData["UCCP"] = true;
+
+            return View();
+        }
+
+        /// <summary>
+        /// GetCompanyId returns the logged-in user's CompanyId from their Identity record.
+        /// </summary>
+        /// <returns>a long/big int representing the CompanyId for the logged in user.</returns>
+        private long? GetCompanyId()
+        {
+            long? id;
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            long companyId = currentUser.CompanyId;
+            long contactId = currentUser.ContactId;
+            id = companyId;
+            return id;
+        }
+
+        private ApplicationUser GetCurrentUser()
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            return currentUser;
+        }
+
+
+        //public ActionResult MyProjects()
+        //{
+        //    //ViewBag.Message = "Terms Of Use.";
+
+        //    //DataTable table1 = new DataTable();
+        //    //string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        //    //System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection(connectionString);
+        //    //connection.Open();
+
+        //    //System.Data.SqlClient.SqlCommand command = new System.Data.SqlClient.SqlCommand();
+        //    //command.Connection = connection;
+        //    //command.CommandText = "PIPESLINK.PIPES2D.dbo.sp_Portal_getProjLastPlanReviewSubmittalDetails";
+        //    //command.CommandType = System.Data.CommandType.StoredProcedure;
+        //    //command.Parameters.Add("@ProjID", System.Data.SqlDbType.BigInt).Value = 30297;
+
+        //    //SqlDataAdapter adapter = new SqlDataAdapter(command);
+        //    //DataSet dataSet = new DataSet();
+        //    ////sp_getProjLastPlanReviewSubmittalDetails_Result lprsd2 = new sp_getProjLastPlanReviewSubmittalDetails_Result();
+        //    //adapter.Fill(dataSet);
+        //    //if (dataSet.Tables.Count > 0)
+        //    //{
+        //    //    table1 = dataSet.Tables[0];
+        //    //    //sp_getProjLastPlanReviewSubmittalDetails_Result lprsd2 = dataSet.Tables[0];
+        //    //}
+
+        //    ////sp_getProjLastPlanReviewSubmittalDetails_Result lprsd = new sp_getProjLastPlanReviewSubmittalDetails_Result()
+        //    ////{
+        //    ////    PROJECTID = (long) table1.Rows[0][0]
+        //    ////};
+
+        //    ////Results of table1 will show returned row (or rows).
+
+        //    //connection.Close();
+
+
+        //    //List<sp_getProjLastPlanReviewSubmittalDetails_Result> lprsd = db.sp_getProjLastPlanReviewSubmittalDetails(30297).ToList();
+
+        //    //HttpClient client = new HttpClient();
+        //    //client.BaseAddress = new Uri("http://localhost:55849/api/plansubmittals/30297");
+        //    //client.DefaultRequestHeaders.Accept.Clear();
+        //    //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+        //    //sp_getProjLastPlanReviewSubmittalDetails_Results lprsd = pedb.sp_getProjLastPlanReviewSubmittalDetails(30384);
+
+        //    //sp_getProjLastPlanReviewSubmittalDetails_Result lprsd = pedb.sp_getProjLastPlanReviewSubmittalDetails(30384).FirstOrDefault();
+
+        //    return View();
+        //}
+
+    }
+}

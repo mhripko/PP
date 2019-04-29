@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="46383f760a474989b2e82a031d376043" Name="Diagram1">
+        <EntityTypeShape EntityType="PIPESModel.ABOUTCONTENT" Width="1.5" PointX="3" PointY="58.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.ACL" Width="1.5" PointX="3" PointY="116.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.ASSETATTRIBS" Width="1.5" PointX="5.25" PointY="121.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.ATTACHMENTS" Width="1.5" PointX="6" PointY="84.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.Calendar" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.CERTSOFOCC" Width="1.5" PointX="12.75" PointY="132.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.CHECKSHEET" Width="1.5" PointX="6" PointY="80" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.CHECKSHEETTEMPLATE" Width="1.5" PointX="3.75" PointY="69.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.COMMENTS" Width="1.5" PointX="3" PointY="74.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.COMPANIES" Width="1.5" PointX="3" PointY="78.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.CONTACTLOOKUPS" Width="1.5" PointX="3" PointY="84.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.CONTACTS" Width="1.5" PointX="3" PointY="88.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.CREATENEWPROJECTREQUEST" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.CSTINFO" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.DISCREPANCIES" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.EASEMENTS" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.EMAILGROUPS" Width="1.5" PointX="3" PointY="94.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.EMAILRECIPIENTS" Width="1.5" PointX="8.25" PointY="85.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.EMAILS" Width="1.5" PointX="5.25" PointY="116.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.ExternalUsers" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.FORMRIGHTS" Width="1.5" PointX="3" PointY="112.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.FORMS" Width="1.5" PointX="0.75" PointY="113" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.HOLIDAYS" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPATTRIBS" Width="1.5" PointX="12.75" PointY="90.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPCHAINOFCUSTODY" Width="1.5" PointX="15.75" PointY="89.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPCHECKSHEET" Width="1.5" PointX="12.75" PointY="94.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPCHECKSHEETATTRIBS" Width="1.5" PointX="6" PointY="88.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPCHECKSHEETTEMPLATE" Width="1.5" PointX="10.5" PointY="91.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPECTIONREQS" Width="1.5" PointX="8.25" PointY="117.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPECTIONS" Width="1.5" PointX="10.5" PointY="97.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPECTORS" Width="1.5" PointX="8.25" PointY="99.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.INSPWORKFLOWS" Width="1.5" PointX="3" PointY="106" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.IWFINFO" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.Log" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.Logins" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.LOOKUP" Width="1.5" PointX="0.75" PointY="79.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.MANHOLES" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PARCELS" Width="1.5" PointX="5.25" PointY="154.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PLANCHAINOFCUSTODY" Width="1.5" PointX="9" PointY="80.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PLANREVIEWMETRICS" Width="1.5" PointX="8.25" PointY="127.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PLANREVIEWREQUEST" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PLANREVISIONS" Width="1.5" PointX="13.5" PointY="141.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PLANSUBMITTALS" Width="1.5" PointX="11.25" PointY="120.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PLANTRANSFERWORKFLOW" Width="1.5" PointX="3" PointY="127.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.POCREQUEST" Width="1.5" PointX="5.25" PointY="93.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PRIVINSPOBJS" Width="1.5" PointX="11.25" PointY="115.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJCOMPANIES" Width="1.5" PointX="8.25" PointY="123.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJCONTACTS" Width="1.5" PointX="5.25" PointY="126.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJECTATTRIBLEVELS" Width="1.5" PointX="3" PointY="136" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJECTATTRIBS" Width="1.5" PointX="11.25" PointY="127.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJECTPHASES" Width="1.5" PointX="5.25" PointY="158.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJECTS" Width="1.5" PointX="3" PointY="153.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJINSPASSETS" Width="1.5" PointX="14.25" PointY="121.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJINSPINFO" Width="1.5" PointX="14.25" PointY="111.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJINSPTEMPLATE" Width="1.5" PointX="8.25" PointY="112.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJMATERIALS" Width="1.5" PointX="5.25" PointY="111.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJOOOINSPS" Width="1.5" PointX="16.75" PointY="117.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PROJPOCS" Width="1.5" PointX="5.25" PointY="171.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.REVASSETS" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.ROLES" Width="1.5" PointX="0.75" PointY="117" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.SEGMENTS" Width="1.5" PointX="14.25" PointY="127" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.SSGRAVITYMAIN" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.SSJOBSTARTSLINES" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.SSJOBSTARTSPOINT" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.SSMANHOLE" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.SYSCONST" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.SystemUsers" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.UPLOADEDDOCS" Width="1.5" PointX="3.75" PointY="99.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.ManagerReportStaticData" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.PRREQUEST" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwAboutItems_ACTIVE" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwAboutItems_ALL" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwACLInfo" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwApplicationVersions_ACTIVE" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwApplicationVersions_ALL" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwCompanyInfo" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwFORMRIGHTSInfo" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PIPESModel.vwSegmentInfo" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <AssociationConnector Association="PIPESModel.FK_VERSIONID_ABOUTCONTENT_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ROLEID_ACL_ROLES" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_USERID_EMAILS_ACL" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ATTRIBUTEID_ASSETATTRIBS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_ASSETATTRIBS_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_OWNERTYPEID_ATTACHMENTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_UPLOADEDDOCID_ATTACHMENTS_UPLOADEDDOCS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONID_CERTSOFOCC_INSPECTION" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_CERTSOFOCC_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_LOOKUPID_CHECKSHEET_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_REQUIREMENTID_CHECKSHEET_CHECKSHEETTEMPLATE" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_SUBMITTALID_CHECKSHEET_PLANSUBMITTALS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_COMMENTTYPEID_COMMENTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_COMPANYID_INSPECTIONREQS_COMPANY" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CompanyID_ProjCompany_COMPANY" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_COMPANYTYPEID_COMPANIES_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CONTACTTYPEID_CONTACTLOOKUPS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_EMAILGROUPTYPEID_CONTACTLOOKUPS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CALLERID_INSPECTIONREQS_CONTACTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CONTACTID_EMAILRECIPIENTS_CONTACTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ContactID_POCREQUEST_CONTACTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ContactID_ProjContact_CONTACTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CONTACTTYPEID_CONTACTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_FIELDCONTACTID_INSPECTIONREQS_CONTACTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_EMAILGROUPTYPEID_EMAILGROUP_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CONTACTTYPEID_EMAILRECIPIENTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_EMAILGROUPTYPEID_EMAILRECIPIENTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_EMAILTYPEID_EMAILID_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_EMAILS_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_FORMID_FORMRIGHTS_FORM" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ROLEID_FORMRIGHTS_ROLES" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ATTRIBUTEID_INSPATTRIBS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONID_INSPATTRIBS_INSPECTIONS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ActionID_INSPCHAINOFCUSTODY_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CurrentLocationID_INSPCHAINOFCUSTODY_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_InspectionID_INSPCHAINOFCUSTODY_INSPECTIONS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONID_INSPCHECKSHEET_INSPECTION" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_REQUIREMENTID_INSPCHECKSHEET_CHECKSHEETTEMPLATE" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_RESULTID_INSPCHECKSHEET_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ATTRIBUTEID_INSPCHECKSHEETATTRIBS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPCSREQID_INSPCHECKSHEETATTRIBS_INSPCSTEMPLATE" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONREQID_INSPECTION_INSPECTIONREQS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_INSPECTIONREQS_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_REQUESTSTATUSID_INSPECTIONREQS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_WORK_SHIFT_INSPECTIONREQS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONID_PROJOOOINSP_INSPECTIONS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONSTATUSID_INSPECTIONS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONTYPEID_INSPECTIONS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTORID_INSPECTIONS_INSPECTORS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_RESULTID_INSPECTIONS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ASSET_TYPE_ID_INSPWORKFLOW_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONTYPEID_INSPWORKFLOW_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ActionID_PlanChainOfCustody_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_AttributeID_PLANREVIEWMETRICS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ATTRIBUTEID_PROJECTATTRIBLEVELS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ATTRIBUTEID_PROJECTATTRIBS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CORROBJTYPEID_PRIVINSPOBJS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CURRENT_STATUSID_PLANTRANSFERWORKFLOW_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_CurrentLocationID_PlanChainOfCustody_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONTYPEID_PROJINSPTEMPLATE_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_INSPECTIONTYPEID_PROJOOOINSP_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_LEVELID_PROJECTATTRIBLEVELS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_MediaID_PLANSUBMITTALS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_NEW_LOCATIONID_PLANTRANSFERWORKFLOW_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_NEW_STATUSID_PLANTRANSFERWORKFLOW_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_pmsize_PROJMATERIALS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_pmtype_PROJMATERIALS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_pmunit_PROJMATERIALS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROASSETTYPETID_PROJINSPASSETS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTCLASSID_PROJECTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_BONDRELINSP_STATUSID_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_FINALINSP_STATUSID_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_JOBSTART_STATUSID_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_QAREVIEW_STATUSID_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTSTATUSID_PROJECTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTTYPEID_PROJECTS_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJINSPINFO_INSPWORKFLOW_STATUSID_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_SIZEID_SEGMENT_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_SubStatus_PlanSubmittals_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_TYPEID_SEGMENT_LOOKUP" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ParcelID_Parcel_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PlanSubmittalID_PlanChainOfCustody_PlanSubmittals" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PlanRevisionID_PLANREVIEWMETRICS_PLANREVISIONS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ProjectID_PLANREVIEWMETRICS_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PlanSubmittalID_PlanRevision_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ProjectID_PlanRevision_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PlanSubmittalID_PlanSubmittals_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PRIVINSPOBJS_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ProjectID_ProjCompany_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_ProjectID_ProjContact_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJECTATTRIBS_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJECTPHASE_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJINSPASSETS_PROJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJINSPINFO_PROJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJINSPTEMPLATE_PROJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJMATERIALS_PROJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJOOOINSP_PROJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_PROJPOC_PROJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PIPESModel.FK_PROJECTID_SEGMENTS_PROJECT" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

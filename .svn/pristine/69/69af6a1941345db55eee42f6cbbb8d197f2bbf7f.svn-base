@@ -1,0 +1,7 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated && (User.IsInRole("PartnerAdmin") || User.IsInRole("PortalAdmin")))
+{
+    <li>@Html.ActionLink("<------Business Partner Administrator------>", "Index", "Home")</li>
+    <li>@Html.ActionLink("1. Add, Update, Setup, and maintain the User Accounts for your Company. ", "Index", "Contacts", routeValues: null, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("2. Read, Update, and maintain your Company Profile", "Edit", "Companies", routeValues: null, htmlAttributes: null)</li>
+}

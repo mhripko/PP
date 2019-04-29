@@ -1,0 +1,792 @@
+﻿@************************************************************************************@
+@************************************************************************************@
+@*****                                                                          *****@
+@*****  FileName: /Views/INSPECTIONREQS/Create.cshtml                           *****@
+@*****  Copyright: CCWRD - 2015                                                 *****@
+@*****  Author: Aaron Araujo                                                    *****@
+@*****                                                                          *****@
+@*****  History: (Developer Initials)   Date    Description                     *****@
+@*****                                                                          *****@
+@************************************************************************************@
+@************************************************************************************@
+
+@model PORTAL.Models.INSPECTIONREQS
+
+@{
+    ViewBag.Title = "Inspection Request";
+
+    //if(ViewBag.ForModalWindow == true)
+    //{
+    //    Layout = "~/Views/Shared/_ModalWindowLayout.cshtml";
+    //}
+    //else
+    //{
+    //    Layout = "~/Views/Shared/_InspectionLayout.cshtml";
+    //}
+
+    //int numAssetsPerRowToDisplay = 5;
+    string FMCBID;
+    string PSCBID;
+    string COOCBID;
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        // Added to initialize the div to prevent first call to collapse('hide') from showing the div
+        $("#StartTime_SPAN").collapse({ toggle : false});
+    });
+
+    // Function that displays "Time Picker" if "OT" Workshift is selected
+    function showStartTimeSelection() {
+        var pStartMonth = $('#WORKSHIFT').data('kendoDropDownList').text();
+        if ($.trim(pStartMonth) == 'OT') {
+            $("#StartTime_SPAN").collapse('show');
+        } else {
+            $("#StartTime_SPAN").collapse('hide');
+        }
+        return true;
+    }
+
+    // Function that
+    function updateElementAttr(element, elementValue, attrToSet, attrValue, addClass, kClassOfInterest, attrToRemove) {
+        document.getElementById(element).value = elementValue;
+        $('#' + element).prop(attrToSet, attrValue);
+
+        if (addClass) {
+            $('#' + element).addClass(kClassOfInterest);
+        }
+        else {
+            $('#' + element).removeAttr('disabled');
+            $('#' + element).removeClass(kClassOfInterest);
+
+        }
+    }
+
+    $(function () {     // this function prevents default form submition to server
+        var atLeastOneInspReq = false;
+
+        $('#createInspForm').find('input[type="submit"],button[type="submit"]').click(function (e) {
+
+            blockPage();
+
+            $('#createInspForm').find('input[id*="ITID_"]').each(function () {                      // For each Inspection Checkbox input field
+                if ($(this).is(':checked')) {                               // Check if selected
+                    atLeastOneInspReq = true;
+                    return false;
+                }
+            });
+
+            if (!atLeastOneInspReq) {
+                alert("PLEASE CHOOSE AT LEAST ONE INSPECTION TYPE");
+                // Return false in Jquery to prevent default and stop propogation
+                // so the form isn't submitted to the server.
+                unblockPage();
+                return false;
+            }
+
+            var select = document.getElementById('CallerName').value;
+            if (select == null || select == "") {
+                alert("PLEASE PROVIDE THE CALLER NAME");
+                $('#createInspForm').find("#CallerName").focus();
+                // Return false in Jquery to prevent default and stop propogation
+                // so the form isn't submitted to the server.
+                unblockPage();
+                return false;
+            }
+
+            select = document.getElementById('FieldContactName').value;
+            if (select == null || select == "") {
+                alert("PLEASE PROVIDE THE FIELD CONTACT NAME");
+                $('#createInspForm').find("#FieldContactName").focus();
+                // Return false in Jquery to prevent default and stop propogation
+                // so the form isn't submitted to the server.
+                unblockPage();
+                return false;
+            }
+
+            select = document.getElementById('FieldContactTel').value;
+            if (select == null || select == "" || select == "702 000 0000") {
+                alert("PLEASE PROVIDE THE FIELD CONTACT TELEPHONE NUMBER");
+                $('#createInspForm').find("#FieldContactTel").focus();
+                // Return false in Jquery to prevent default and stop propogation
+                // so the form isn't submitted to the server.
+                unblockPage();
+                return false;
+            }
+
+            // activate this code if we ever need to make sure that the respective contact needs to be added
+            // to at least one (1) email list
+            //select = $('input[name="CallerContactEmailList"]:checked').length > 0;
+            //select = $('input[name="FieldContactEmailList"]:checked').length > 0;
+
+            var datepicker = $("#FROM_DT").data("kendoDateTimePicker");
+            if (datepicker.value() == null) {
+                alert("PLEASE SPECIFY REQUESTED INSPECTION DATE");
+                $("#FROM_DT").focus();
+                // Return false in Jquery to prevent default and stop propogation
+                // so the form isn't submitted to the server.
+                unblockPage();
+                return false;
+            }
+
+            return true;
+        });
+    });
+
+
+    function setMulti(id) {
+        var res = id.split("_");
+        var IID = res[1];
+
+        if ($("#" + id)[0].checked)
+        {
+            $('input[id*="ITID_"]').each(function () {
+                var iid = $(this).attr('id').split("_");
+                if (iid[1] == IID) {
+                    $(this).prop('checked', true);
+                }
+            });
+
+            //$('#MULTIICONLESS_' + IID).show();
+            //$('#SELECTALLMULTI_' + IID).show();
+
+            showAssets(id);
+        }
+        else
+        {
+            $('input[id*="ITID_"]').each(function () {
+                var iid = $(this).attr('id').split("_");
+                if (iid[1] == IID) {
+                    $(this).prop('checked', false);
+                }
+            });
+
+            //hideAssets(id);
+            //$('#MULTIICONMORE_' + IID).show();
+            //$('#MULTIICONLESS_' + IID).hide();
+
+            //$('#SELECTALLMULTI_' + IID).hide();
+        }
+    }
+
+
+    function setAllMulti(id) {
+        var res = id.split("_");
+        var IID = res[1];
+
+        if ($("#" + id)[0].checked) {
+            $('input[id*="ITID_"]').each(function () {
+                var iid = $(this).attr('id').split("_");
+                if (iid[1] == IID) {
+                    $(this).prop('checked', true);
+                }
+            });
+        }
+        else {
+            $('input[id*="ITID_"]').each(function () {
+                var iid = $(this).attr('id').split("_");
+                if (iid[1] == IID) {
+                    $(this).prop('checked', false);
+                }
+            });
+        }
+    }
+
+
+    function checkMulti(id) {
+        var res = id.split("_");
+        var IID = res[1];
+        var multiCount = 0;
+        var multiCheckedCount = 0;
+
+        $('input[id*="ITID_"]').each(function () {
+            var iid = $(this).attr('id').split("_");
+            if (iid[1] == IID) {
+                multiCount++;
+                if ($(this)[0].checked)
+                {
+                    multiCheckedCount++;
+                }
+            }
+        });
+
+
+        if((multiCount != 0) && (multiCheckedCount == 0))
+        {
+            $("#PLAINMULTI_" + IID).prop('checked', false);
+            hideAssets(id);
+            $('#MULTIICONMORE_' + IID).hide();
+            $('#MULTIICONLESS_' + IID).hide();
+        }
+    }
+
+    function showAssets(id) {
+        var res = id.split("_");
+        var IID = res[1];
+
+        //$('#MULTIROW_' + IID).show();
+        $('#MULTIROW_' + IID).collapse('show');
+
+        $('#MULTIICONMORE_' + IID).hide();
+        $('#MULTIICONLESS_' + IID).show();
+    }
+
+
+    function hideAssets(id) {
+        var res = id.split("_");
+        var IID = res[1];
+
+        //$('#MULTIROW_' + IID).hide();
+        $('#MULTIROW_' + IID).collapse('hide');
+
+        $('#MULTIICONLESS_' + IID).hide();
+        $('#MULTIICONMORE_' + IID).show();
+    }
+
+    function pickContact(contactType) {
+
+        var action = '@Url.Action("Select", "Contacts")';
+        var fullLink = kendo.format("{0}/{1}?contactType={2}", action, @ViewBag.ProjId, contactType);
+
+        var width = 1000;
+        var height = 750;
+
+        if (width > ($(window).width() - 100)) {
+            width = $(window).width() - 100;
+            if (width < 100) {
+                width = 100;
+            }
+        }
+
+        if (height > ($(window).height() - 100)) {
+            height = $(window).height() - 100;
+        }
+
+        width = String(width) + "px";
+        height = String(height) + "px";
+
+        openModalWindow(
+                    'pickContact',  //name
+                    height,           //height
+                    width,            //width
+                    fullLink,         //link - content
+                    ['btnSelectContactClose']      //closeButtons - ids of all buttons to implement close method on
+          );
+
+    }
+
+</script>
+
+
+@Html.Hidden("nextInspectionsCount", (int)ViewBag.nextInspectionsCount)
+
+@if (((ViewBag.nextInspectionsCount != null) && (ViewBag.nextInspectionsCount > 0)) || (bool)ViewData["FMIsAvail"])
+{
+    <div id="pageheader">
+        <br />
+        <h2>@ViewBag.Title</h2>
+        <h3>Fields marked w/an "*" are REQUIRED</h3>
+        <br />
+    </div>
+    
+    using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createInspForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        if (ViewBag.contractor != null)
+        {
+            @Html.Hidden("contractorExists", true)
+        }
+        else
+        {
+            @Html.Hidden("contractorExists", false)
+        }
+
+        @Html.Hidden("ProjId", (long)ViewBag.ProjId)
+        @*@Html.Hidden("PROJECTPHASEID", (long)ViewBag.ProjPhaseId)*@
+        @*@Html.Hidden("FSA", (bool)ViewBag.ForSpecificAsset)*@
+        @*@Html.Hidden("FMW", (bool)ViewBag.ForModalWindow)*@
+    
+        if (ViewBag.existingFieldContactId != null)
+        {
+            @Html.Hidden("existingFieldContactId", (long)ViewBag.existingFieldContactId)
+        }
+        else
+        {
+            @Html.Hidden("existingFieldContactId", 0)
+        }
+        if (ViewBag.existingcallerId != null)
+        {
+            @Html.Hidden("existingcallerId", (long)ViewBag.existingcallerId)
+        }
+        else
+        {
+            @Html.Hidden("existingcallerId", 0)
+        }
+
+        @Html.Hidden("fieldContactExists", false)
+        @Html.Hidden("existingFieldContactName", null)
+        @Html.Hidden("callerExists", false)
+        @Html.Hidden("existingcallerName", null)
+
+        <div style="border:solid; border-width: 1px">
+            <div class="row" style="margin: 5px 0px 5px 0px">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("CALL-IN DATE:")
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @(Html.Kendo().DateTimePicker()
+                            .Name("REQUESTDATE")
+                            .Interval(10)
+                            .Value(DateTime.Now)
+                            .Max(DateTime.Now)
+                            .HtmlAttributes(new { @class = "ccwrd_text_input", style = "color:black;" })
+                    )
+                </div>
+            </div>
+            <div class="row" style="margin: 5px 0px 5px 0px">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("PROJECT NUMBER:")
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <label class="ccwrd_text_label grayed">@ViewBag.ProjNumber</label>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("PROJECT NAME:")
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <label class="ccwrd_text_label grayed">@ViewBag.ProjName</label>
+                </div>
+            </div>
+            @*<div class="row" style="margin: 5px 0px 5px 0px">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("EAST/WEST CROSS STREETS:")
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @if (@ViewBag.Project.EWCROSSSTREETS != null)
+                    {
+                        <label class="ccwrd_text_label grayed">@ViewBag.Project.EWCROSSSTREETS</label>
+                    }
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("NORTH/SOUTH CROSS STREETS:")
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @if (@ViewBag.Project.NSCROSSSTREETS != null)
+                    {
+                        <label class="ccwrd_text_label grayed">@ViewBag.Project.NSCROSSSTREETS</label>
+                    }
+                </div>
+            </div>*@
+            <div class="row no-gutters" style="border-top:solid; border-bottom: solid; border-width: 1px">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("* CALLER NAME:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input id="CallerName" name="CallerName" class="ccwrd_text_label boldLabel" readonly disabled value="@ViewBag.lastCallerName" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("CALLER TELEPHONE #:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input id="CallerTel" name="CallerTel" class="ccwrd_text_label boldLabel" readonly disabled value="@ViewBag.lastCallerNumber" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("CALLER EMAIL:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input id="CallerEmail" name="CallerEmail" class="ccwrd_text_label boldLabel" readonly disabled value="@ViewBag.lastCallerEmail" />
+                        </div>
+                    </div>
+                    @*<div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("ADD TO CONTACT LIST:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <span style="white-space: nowrap;">
+                                <input type="checkbox" name="CallerContactEmailList" value="J" style="background-color:lightgreen;" />&nbsp;&nbsp;J &nbsp;&nbsp;
+                                <input type="checkbox" name="CallerContactEmailList" value="I" checked style="background-color:lightyellow" />&nbsp;&nbsp;I&nbsp;&nbsp;
+                                <input type="checkbox" name="CallerContactEmailList" value="F" style="background-color:lightpink" />&nbsp;&nbsp;F&nbsp;&nbsp;
+                                <input type="checkbox" name="CallerContactEmailList" value="B" style="background-color:lightcoral" />&nbsp;&nbsp;B
+                            </span>
+                        </div>
+                    </div>*@
+                </div>
+                @*<div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <button type="button" name="btnSelectCaller" id="btnSelectCaller" class="btn btn-primary" style="margin-top: 5px; margin-bottom: 5px" onclick="pickContact('caller')"><i class="fa fa-phone fa-fw"></i>&nbsp;Select Caller</button>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            <div class="row no-gutters" style="border-bottom: solid; border-width: 1px">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("* FIELD CONTACT NAME:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input id="FieldContactName" name="FieldContactName" class="ccwrd_text_label boldLabel" readonly disabled value="@ViewBag.lastFieldContactName" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("* FIELD CONTACT #:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input id="FieldContactTel" name="FieldContactTel" class="ccwrd_text_label boldLabel" readonly disabled value="@ViewBag.lastFieldCallerNumber" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("FIELD CONTACT EMAIL:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input id="FieldContactEmail" name="FieldContactEmail" class="ccwrd_text_label boldLabel" readonly disabled value="@ViewBag.lastFieldCallerEmail" />
+                        </div>
+                    </div>
+                    @*<div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            @Html.Label("ADD TO CONTACT LIST:")
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <span style="white-space: nowrap;">
+                                <input type="checkbox" name="FieldContactEmailList" value="J" style="background-color:lightgreen;" />&nbsp;&nbsp;J &nbsp;&nbsp;
+                                <input type="checkbox" name="FieldContactEmailList" value="I" checked style="background-color:lightyellow" />&nbsp;&nbsp;I&nbsp;&nbsp;
+                                <input type="checkbox" name="FieldContactEmailList" value="F" style="background-color:lightpink" />&nbsp;&nbsp;F&nbsp;&nbsp;
+                                <input type="checkbox" name="FieldContactEmailList" value="B" style="background-color:lightcoral" />&nbsp;&nbsp;B
+                            </span>
+                        </div>
+                    </div>*@
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <button type="button" name="btnSelectFieldContact" id="btnSelectFieldContact" class="btn btn-primary" style="margin-top: 5px; margin-bottom: 5px" onclick="pickContact('fieldContact')"><i class="fa fa-address-card fa-fw"></i>&nbsp;Select Field Contact</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin: 5px 0px 5px 0px">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("CONTRACTOR:")
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                    @if (ViewBag.contractor != null)
+                    {
+                            <label class="grayed">@ViewBag.contractor.COMPANYNAME</label>
+                            @Html.Hidden("COMPANYID", (long)ViewBag.contractor.CompanyID)
+                    }
+                    else
+                    {
+                            @Html.TextArea("COMPANYNAME", null, 1, 1, new { style = "overflow-y:auto;font-size:large;" })
+                            @Html.Hidden("COMPANYID", null)
+                    }
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div style="border:solid; border-width: 1px; min-width: 300px">
+            @{
+                string multiInspName = null;
+                long nextInspAssetID = 0;
+                bool nextInspMandatory = false;
+                List<PORTAL.Models.sp_getProjInspToRequest_Result> nextInspections = (List<PORTAL.Models.sp_getProjInspToRequest_Result>)ViewBag.nextInspections;
+                List<PORTAL.Models.sp_NextProjInspToReqDisplay_Result> nextInspectionsDisplay = (List<PORTAL.Models.sp_NextProjInspToReqDisplay_Result>)ViewBag.nextInspectionsDisplay;
+            }
+            <div class="row" style="margin: 5px 0px 5px 0px">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h1>SELECT FROM INSPECTIONS BELOW:</h1>
+                </div>
+            </div>
+            @*  Check if Field Meet can be Requested    *@
+            @if ((bool)ViewData["FMIsAvail"])
+            {
+                FMCBID = "ITID_" + ViewBag.FMInspTypeID + "_AID_" + ViewBag.ProjId;
+                <div class="row" style="margin: 5px 0px 5px 0px">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        @Html.Label("FIELD MEET:")
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3 text-center">
+                        @Html.CheckBox(FMCBID, false)
+                    </div>
+                </div>
+            }
+            @*  Check if Project Status can be Requested    *@
+            @if ((bool)ViewData["PSIsAvail"])
+            {
+                PSCBID = "ITID_" + ViewBag.PSInspTypeID + "_AID_" + ViewBag.ProjId;
+                <div class="row" style="margin: 5px 0px 5px 0px">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        @Html.Label("PROJECT STATUS:")
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3 text-center">
+                        @Html.CheckBox(PSCBID, false)
+                    </div>
+                </div>
+            }
+            @*  Check if Certification of Occupancy can be Requested    *@
+            @*@if ((bool)ViewData["COOIsAvail"])
+            {
+                COOCBID = "ITID_" + ViewData["COOInspTypeID"] + "_AID_" + ViewBag.ProjId;
+                <div class="row" style="margin: 5px 0px 5px 0px">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        @Html.Label("CERTIFICATION OF OCCUPANCY:")
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3 text-center">
+                        @Html.CheckBox(COOCBID, false)
+                    </div>
+                </div>
+                
+            }*@
+                
+            @foreach (var nid in nextInspectionsDisplay)
+            {
+                if ((bool)ViewData["FinalIsAvail"])
+                {
+                    if ((bool)ViewData["isEasementComp"] && (bool)ViewData["OtherRequestedInspsPass"])
+                    {
+                        <div class="row" style="margin: 5px 0px 5px 0px; border-top: solid; border-width: 1px">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                @Html.Label(nid.InspectionType + ":")
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 text-center">
+                                @if (nid.asset_type_id == ViewBag.InspectionAssetProjectID)
+                                {
+                                    {
+                                        nextInspAssetID = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Select(s => s.PIT_ASSETID).FirstOrDefault();
+                                        nextInspMandatory = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Select(s => s.MANDATORY).FirstOrDefault();
+                                    }
+
+                                    @Html.CheckBox("ITID_" + nid.INSPECTIONTYPEID + "_AID_" + nextInspAssetID, false)
+                                }
+                                else
+                                {
+                                    nextInspMandatory = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Select(s => s.MANDATORY).FirstOrDefault();
+                                    @*@Html.CheckBox("PLAINMULTI_" + nid.INSPECTIONTYPEID, (bool)ViewBag.ForSpecificAsset, htmlAttributes: new { @onclick = "setMulti(this.id)" })*@
+                                    if (ViewBag.ForSpecificAsset)
+                                    {
+                                        @Html.CheckBox("PLAINMULTI_" + nid.INSPECTIONTYPEID, true, htmlAttributes: new { @onclick = "setMulti(this.id)" })
+                                    }
+                                    else
+                                    {
+                                        @Html.CheckBox("PLAINMULTI_" + nid.INSPECTIONTYPEID, false, htmlAttributes: new { @onclick = "setMulti(this.id)" })
+                                    }
+                                }
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 text-center">
+                                @if (nid.asset_type_id != ViewBag.InspectionAssetProjectID)
+                                {
+                                    multiInspName = "MULTIICONMORE_" + nid.INSPECTIONTYPEID;
+                                    <span id="@multiInspName" class="fa fa-plus-circle" title="Click here to Display Inspection Assets" onclick="showAssets(this.id)" style="font-size: 32px"></span>
+                                    multiInspName = "MULTIICONLESS_" + nid.INSPECTIONTYPEID;
+                                    <span id="@multiInspName" class="fa fa-minus-circle" title="Click here to Hide Inspection Assets" onclick="hideAssets(this.id)" style="font-size: 32px; display: none"></span>
+                                }
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 5px 0px 5px 0px">
+                            @if (nid.asset_type_id != ViewBag.InspectionAssetProjectID)
+                            {
+                                int outtie, innie;
+                                int numTDs;
+                                string rowName;
+                                //int xx = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Count();
+                                nextInspections = (List<PORTAL.Models.sp_getProjInspToRequest_Result>
+                                    )ViewBag.nextInspections;
+                                nextInspections = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).ToList();
+
+                                rowName = "MULTIROW_" + nid.INSPECTIONTYPEID;
+
+                                <div id="@rowName" class="row collapse">
+
+                                    @foreach (PORTAL.Models.sp_getProjInspToRequest_Result ni in nextInspections)
+                                    {
+                                        if (ni.INSPECTIONTYPEID == nid.INSPECTIONTYPEID)
+                                        {
+                                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 text-center">
+                                                <h4>@ni.assetName</h4>
+                                                @if ((ViewBag.ForSpecificAsset) && (ViewBag.AssetID == ni.PIT_ASSETID))
+                                                {
+                                                    @Html.CheckBox("ITID_" + ni.INSPECTIONTYPEID + "_AID_" + ni.PIT_ASSETID, true, htmlAttributes: new { @onclick = "checkMulti(this.id)" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.CheckBox("ITID_" + ni.INSPECTIONTYPEID + "_AID_" + ni.PIT_ASSETID, false, htmlAttributes: new { @onclick = "checkMulti(this.id)" })
+                                                }
+                                            </div>
+
+                                        }
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="row" style="margin: 5px 0px 5px 0px; border-top: solid; border-width: 1px">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+                            @Html.Label(nid.InspectionType + ":")
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3 text-center">
+                            @if (nid.asset_type_id == ViewBag.InspectionAssetProjectID)
+                            {
+                                {
+                                    nextInspAssetID = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Select(s => s.PIT_ASSETID).FirstOrDefault();
+                                    nextInspMandatory = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Select(s => s.MANDATORY).FirstOrDefault();
+                                }
+
+                                @Html.CheckBox("ITID_" + nid.INSPECTIONTYPEID + "_AID_" + nextInspAssetID, false)
+                            }
+                            else
+                            {
+                                nextInspMandatory = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Select(s => s.MANDATORY).FirstOrDefault();
+                                @*@Html.CheckBox("PLAINMULTI_" + nid.INSPECTIONTYPEID, (bool)ViewBag.ForSpecificAsset, htmlAttributes: new { @onclick = "setMulti(this.id)" })*@
+                                @*if (ViewBag.ForSpecificAsset)
+                                {
+                                    @Html.CheckBox("PLAINMULTI_" + nid.INSPECTIONTYPEID, true, htmlAttributes: new { @onclick = "setMulti(this.id)" })
+                                }
+                                else
+                                {*@
+                                    @Html.CheckBox("PLAINMULTI_" + nid.INSPECTIONTYPEID, false, htmlAttributes: new { @onclick = "setMulti(this.id)" })
+                                @*}*@
+                            }
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3 text-center">
+                            @if (nid.asset_type_id != ViewBag.InspectionAssetProjectID)
+                            {
+                                multiInspName = "MULTIICONMORE_" + nid.INSPECTIONTYPEID;
+                                <span id="@multiInspName" class="fa fa-plus-circle" title="Click here to Display Inspection Assets" onclick="showAssets(this.id)" style="font-size: 32px"></span>
+                                multiInspName = "MULTIICONLESS_" + nid.INSPECTIONTYPEID;
+                                <span id="@multiInspName" class="fa fa-minus-circle" title="Click here to Hide Inspection Assets" onclick="hideAssets(this.id)" style="font-size: 32px; display: none"></span>
+                            }
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 5px 0px 5px 0px">
+                        @if (nid.asset_type_id != ViewBag.InspectionAssetProjectID)
+                        {
+                            int outtie, innie;
+                            int numTDs;
+                            string rowName;
+                            //int xx = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).Count();
+                            nextInspections = (List<PORTAL.Models.sp_getProjInspToRequest_Result>
+                                )ViewBag.nextInspections;
+                            nextInspections = nextInspections.Where(x => x.INSPECTIONTYPEID == nid.INSPECTIONTYPEID).ToList();
+
+                            rowName = "MULTIROW_" + nid.INSPECTIONTYPEID;
+
+                            <div id="@rowName" class="row collapse">
+
+                                @foreach (PORTAL.Models.sp_getProjInspToRequest_Result ni in nextInspections)
+                                {
+                                    if (ni.INSPECTIONTYPEID == nid.INSPECTIONTYPEID)
+                                    {
+                                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 text-center">
+                                            <h4>@ni.assetName</h4>
+                                            @*@if ((ViewBag.ForSpecificAsset) && (ViewBag.AssetID == ni.PIT_ASSETID))
+                                            {
+                                                @Html.CheckBox("ITID_" + ni.INSPECTIONTYPEID + "_AID_" + ni.PIT_ASSETID, true, htmlAttributes: new { @onclick = "checkMulti(this.id)" })
+                                            }
+                                            else
+                                            {*@
+                                                @Html.CheckBox("ITID_" + ni.INSPECTIONTYPEID + "_AID_" + ni.PIT_ASSETID, false, htmlAttributes: new { @onclick = "checkMulti(this.id)" })
+                                            @*}*@
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+            <div class="row" style="margin: 5px 0px 5px 0px; border-top: solid; border-width: 1px">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("REQUESTED INSPECTION DATE:")
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    @(Html.Kendo().DateTimePicker()
+                            .Name("FROM_DT")
+                            .Interval(60)
+                            .HtmlAttributes(new { onkeydown = "javascript:return false;" })
+                    )    
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    @Html.Label("WORK SHIFT:")
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    @(Html.Kendo().DropDownList()
+                            .Name("WORKSHIFT")
+                            .BindTo((SelectList)ViewBag.workShift)
+                            .HtmlAttributes(new { @onchange = "showStartTimeSelection();", style="width: 100px" })
+                    )
+                </div>
+            </div>
+            <div id="StartTime_SPAN" class="row collapse" style="margin: 5px 0px 5px 0px;">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.Label("PLEASE INDICATE TIME FOR OVERTIME REQUEST")
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    @(Html.Kendo().TimePicker()
+                            .Name("OT_TIME")
+                            .Interval(60)
+                            .HtmlAttributes(new { onkeydown = "javascript:return false;" })
+                    )
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row" style="margin: 5px 0px 5px 0px">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                @Html.Label("COMMENTS:")
+            </div>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                @Html.TextArea("COMMENTS", null, 5, 1, new { @class = "ccwrd_projnotes_input", style = "overflow-y:auto;font-size:large;" })
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-sm-6 col-md-4 col-lg-3 col-lg-offset-3 col-md-offset-2 text-center" style="margin-top: 5px">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save fa-fw"></i> Submit
+                </button>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 text-center" style="margin-top: 5px">
+                <a class="btn btn-danger" href='@Url.Action("LivingDocument", "INSPECTIONS", routeValues: new { ProjId = ViewBag.ProjId })'>
+                    <span class="tableLabel" style="color: white"><i class="fa fa-ban fa-fw"></i> Cancel</span>
+                </a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div id="pageheader">
+        <br />
+        <h2>
+            NO INSPECTIONS AVAILABLE FOR REQUEST AT THIS TIME.
+            
+            <br />
+            @if ((bool)ViewData["PIC"])
+            {
+                <span>ALL INSPECTIONS FOR THE @Html.ActionLink("PROJECT", "LivingDocument", "Inspections", routeValues: new { ProjId = @ViewBag.ProjId }, htmlAttributes: new { style = "color: blue;" }) HAVE BEEN COMPLETED.</span>
+            }
+            else
+            {
+                <span>CHECK @Html.ActionLink("LIVING DOCUMENT", "LivingDocument", "Inspections", routeValues: new { ProjId = @ViewBag.ProjId }, htmlAttributes: new { style = "color: blue;" }).</span>
+            }
+        </h2>
+    </div>
+}

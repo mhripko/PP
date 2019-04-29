@@ -1,0 +1,92 @@
+﻿@************************************************************************************@
+@************************************************************************************@
+@*****                                                                          *****@
+@*****  FileName: /Views/Home/Dashboard.cshtml                                  *****@
+@*****  Copyright: CCWRD - 2018                                                 *****@
+@*****  Author: Aaron Araujo                                                    *****@
+@*****                                                                          *****@
+@************************************************************************************@
+@************************************************************************************@
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        @*$('#DisplayDates').hide();
+        $('#DisplayDatesIns').hide();
+
+        var tabIndx = -1;
+
+        var tab = $("#IPX_" + "@ViewBag.selectedInspectorID");             // Grab Tab to set as Selected
+        if (tab.length > 0) {                                   // Safety check
+            tabIndx = tab.index();                              // Grab the Tab Index
+            var tabStrip = $("#DashboardTabStrip").kendoTabStrip().data("kendoTabStrip");   // Grab the Tab Strip
+            tabStrip.select(tabIndx);                                                       // Set the Selected Tab
+        }
+
+        $(window).on('load', function () {
+            var startDate = $("#Start_Date_MYINSP").data("kendoDatePicker");
+            startDate.value(new Date("@ViewBag.InspStartDate"));
+            var endDate = $("#End_Date_MYINSP").data("kendoDatePicker");
+            endDate.value(new Date("@ViewBag.InspEndDate"));
+
+            //alert($("#Start_Date_MYINSP").data("kendoDatePicker").value());
+            //alert($("#End_Date_MYINSP").data("kendoDatePicker").value());
+            //refreshAllGrids();
+           // onDateChange();
+        });*@
+    });
+</script>
+
+<br />
+<br />
+<h1>
+    MY DASHBOARD
+</h1>
+<br />
+<br />
+
+@(Html.Kendo().TabStrip()
+    .Name("DashboardTabStrip")
+    .HtmlAttributes(new { style = "width: 100%;" })
+    .Items(items =>
+    {
+        items.Add()
+            .Text("MY PROJECTS")
+            .Selected(true)
+            .Content(@<text>
+                    <div class="centeredElement">
+                        @Html.Partial("~/Views/PROJREQUEST/MyProjects.cshtml")
+                    </div>
+                </text>)
+            .HtmlAttributes(new { @id = "myProjectsTab", @class = "ccwrd_tabStripHeaderMods" })
+            .ContentHtmlAttributes(new { @class = "ccwrd_tabStripContentMods" });
+
+        items.Add()
+            .Text("MY PLAN REVIEWS")
+            .Content(@<text>
+                @Html.Partial("~/Views/PRREQUEST/ProjectPlans.cshtml")
+            </text>)
+            .HtmlAttributes(new { @id = "myProjectsPlansTab", @class = "ccwrd_tabStripHeaderMods" })
+            .ContentHtmlAttributes(new { @class = "ccwrd_tabStripContentMods" });
+
+        items.Add()
+            .Text("MY INSPECTIONS")
+            .Content(@<text>
+                @Html.Partial("~/Views/INSPREQUEST/ProjectInsps.cshtml")
+            </text>)
+            .HtmlAttributes(new { @id = "myInspsTab", @class = "ccwrd_tabStripHeaderMods" })
+            .ContentHtmlAttributes(new { @class = "ccwrd_tabStripContentMods" });
+
+        items.Add()
+            .Text("MY POC REQUESTS")
+            .Content(@<text>
+                @Html.Partial("~/Views/POCREQUEST/MyPOCs.cshtml")
+            </text>)
+            .HtmlAttributes(new { @id = "myPOCsTab", @class = "ccwrd_tabStripHeaderMods" })
+            .ContentHtmlAttributes(new { @class = "ccwrd_tabStripContentMods" });
+    })
+)

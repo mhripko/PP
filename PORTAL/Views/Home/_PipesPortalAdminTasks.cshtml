@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@if (User.Identity.IsAuthenticated && (User.Identity.GetUserName().ToLower() == "PPADMIN@cleanwaterteam.com".ToLower() || User.Identity.GetUserName().ToLower() == "BPADMIN@lvp.com".ToLower()))
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+    @Html.AntiForgeryToken()
+    <h2>Pipes Portal Admin Tasks</h2>
+    <ul>
+        <li>@Html.ActionLink("Create Business Partner Administrator", "Register", "BPADMIN")</li>
+        <li>@Html.ActionLink("Index Of Business Partners Administrator", "Index", "BPADMIN", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Update Business Partners Administrator", "Update", "BPADMIN", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Delete Business Partners Administrator", "Delete", "BPADMIN", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("EMail Business Partners Administrator", "EMail", "BPADMIN", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+    }
+}
